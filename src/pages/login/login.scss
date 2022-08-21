@@ -1,0 +1,62 @@
+$widthInputs: 300px;
+$minWidthInputs: 220px;
+
+body{
+    background-color: #5800FF;
+    overflow-y: hidden;
+    form{
+        display: flex;
+        flex-flow:  column;
+        .buttonLogin{
+            width: $widthInputs;
+        }
+    }
+
+}
+
+.DivBody{
+    .ContainerBord{
+        .Inputs{
+            margin: 20px;
+            width: $widthInputs;
+        }
+        .buttonLogin{
+            justify-content: center;
+            width: $widthInputs;
+        }
+    }
+}
+@media (max-width: 400px) {
+    
+    .DivBody{
+        height: 70vh;
+        .ContainerBord{
+            .Title{
+                font-size: 2rem;
+            }
+            .Inputs{
+                width: $minWidthInputs;
+            }
+            .buttonLogin{
+                justify-content: center;
+                width: $minWidthInputs;
+            }
+        }
+    }
+    
+}
+@media (max-width: 310px) {
+    .DivBody{
+        .ContainerBord{
+            padding: 5px;
+            .Title{
+                font-size: 2rem;
+            }
+            .Inputs{
+                margin: 10px;
+            }
+        }
+    }
+
+
+}
