@@ -2,8 +2,10 @@ $widthInputs: 300px;
 $minWidthInputs: 220px;
 
 body{
-    background-color: #5800FF;
     overflow-y: hidden;
+    .div-bg{
+        background-color: #5800FF;
+    }
     form{
         display: flex;
         flex-flow:  column;

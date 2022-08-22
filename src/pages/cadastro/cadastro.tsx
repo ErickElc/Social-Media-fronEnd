@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import '../../styles/Styles.scss'
 import React, { useState } from "react";
 import http from "../../api/api";
+import { Link } from "react-router-dom";
 
 
 
@@ -25,7 +26,7 @@ export default function Cadastro(){
         console.log("Cadastrando Usuário!");
         
         try{
-            await http.post("api/users/cadastrar",{
+            await http.post("api/cadastrar",{
                 name: name,
                 age: age,
                 email: email,
@@ -41,56 +42,60 @@ export default function Cadastro(){
     }
 
     return(
-        <DivBody className="DivBody">
-            <DivBord className="ContainerBord" onSubmit={SubmitForm}>
-                <TextLogin className="Title">
-                    Cadastro
-                </TextLogin>
-                <TextField 
-                    className="Inputs"
-                    id="outlined-basic"
-                    value={name}
-                    label="Nome" 
-                    variant="outlined"
-                    required
-                    type='text'
-                    onChange={e => setName(e.target.value)}
-                />
-                <TextField 
-                    className="Inputs"
-                    id="outlined-basic"
-                    value={age}
-                    label="Idade" 
-                    variant="outlined"
-                    required
-                    type='number'
-                    onChange={e => setAge(e.target.value)}
-                />
-                <TextField 
-                    className="Inputs"
-                    id="outlined-basic"
-                    required
-                    value={email}
-                    label="Email" 
-                    variant="outlined"
-                    type='email'
-                    onChange={e => setEmail(e.target.value)}
-                />
-                <TextField 
-                    className="Inputs"
-                    id="outlined-basic"
-                    value={password}
-                    label="Senha" 
-                    variant="outlined"
-                    required
-                    type="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <Button variant="contained" className="buttonLogin" type="submit">Cadastrar</Button>
-                <TextoLink className="textLink">
-                    Já tem conta?
-                </TextoLink>
-            </DivBord>
-        </DivBody>
+        <div className="div-bg">
+            <DivBody className="DivBody">
+                <DivBord className="ContainerBord" onSubmit={SubmitForm}>
+                    <TextLogin className="Title">
+                        Cadastro
+                    </TextLogin>
+                    <TextField 
+                        className="Inputs"
+                        id="outlined-basic"
+                        value={name}
+                        label="Nome" 
+                        variant="outlined"
+                        required
+                        type='text'
+                        onChange={e => setName(e.target.value)}
+                    />
+                    <TextField 
+                        className="Inputs"
+                        id="outlined-basic"
+                        value={age}
+                        label="Idade" 
+                        variant="outlined"
+                        required
+                        type='number'
+                        onChange={e => setAge(e.target.value)}
+                    />
+                    <TextField 
+                        className="Inputs"
+                        id="outlined-basic"
+                        required
+                        value={email}
+                        label="Email" 
+                        variant="outlined"
+                        type='email'
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                    <TextField 
+                        className="Inputs"
+                        id="outlined-basic"
+                        value={password}
+                        label="Senha" 
+                        variant="outlined"
+                        required
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <Button variant="contained" className="buttonLogin" type="submit">Cadastrar</Button>
+                    <TextoLink className="textLink">
+                        <Link to='/login'>
+                            Já tem conta?
+                        </Link>    
+                    </TextoLink>
+                </DivBord>
+            </DivBody>
+        </div>
     )
 }
