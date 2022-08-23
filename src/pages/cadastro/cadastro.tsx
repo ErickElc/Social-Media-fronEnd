@@ -4,11 +4,14 @@ import Button from '@mui/material/Button';
 import '../../styles/Styles.scss'
 import React, { useState } from "react";
 import http from "../../api/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
 export default function Cadastro(){
+
+    const navigate = useNavigate();
+
     const [name, setName] = useState('');
 
     const [age, setAge] = useState('');
@@ -16,8 +19,16 @@ export default function Cadastro(){
     const [email, setEmail] = useState('');
     
     const [password, setPassword] = useState('');
+    
+    const [request, setRequest] = useState("");
 
-
+    function registerWorked(register : any){
+        if((register.request.status) === 201){
+            alert("Usuário criado com sucesso!");
+            navigate("/login");
+            return console.log("created");
+        };
+    }; 
 
     async function SubmitForm(e: React.FormEvent<HTMLFormElement>){
 
@@ -26,20 +37,20 @@ export default function Cadastro(){
         console.log("Cadastrando Usuário!");
         
         try{
-            await http.post("api/cadastrar",{
+            const registerRequest = await http.post("api/cadastrar",{
                 name: name,
                 age: age,
                 email: email,
                 password: password
             })
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
+            registerWorked(registerRequest);
         }
         catch(err){
-            console.log(err)
+            console.log(err);
+            setRequest("Esse e-mail já foi cadastrado!");
         }
         
-    }
+    };
 
     return(
         <div className="div-bg">
@@ -47,6 +58,9 @@ export default function Cadastro(){
                 <DivBord className="ContainerBord" onSubmit={SubmitForm}>
                     <TextLogin className="Title">
                         Cadastro
+                    </TextLogin>
+                    <TextLogin className="requestTest">
+                        {request}
                     </TextLogin>
                     <TextField 
                         className="Inputs"

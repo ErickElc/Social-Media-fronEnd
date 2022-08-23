@@ -1,35 +1,39 @@
 import { DivBody, DivBord, TextLogin, TextoLink} from "../../styles/components";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import '../../styles/Styles.scss'
-import './login.scss'
+import '../../styles/Styles.scss';
+import './login.scss';
 import http from "../../api/api";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login(){
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState("");
-    const [requestStatus, setRequestStatus] = useState("401");
+    const [request, setRequest] = useState("");
+
+    async function isLogged(login :any){
+        console.log(login.request.status);
+        if(login.request.status === 202){
+            alert("Login efetuado com sucesso");
+            navigate("/");
+        }
+    };
     async function SubmitForm(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault();
         try {
             const loginRequest = await http.post("/api/login", {
                 email: email,
                 password: password
-            })
-            if(loginRequest){
-                console.log(loginRequest.request.status)
-
-            }
+            });
+            isLogged(loginRequest);
             
         } catch (error) {
+            setRequest("email ou senha está incorreta!");
             console.log(error);
         }
-
-
-
-    }
+    };
 
     return(
         <div className="div-bg">
@@ -37,6 +41,9 @@ export default function Login(){
                 <DivBord className="ContainerBord" onSubmit={SubmitForm}>
                     <TextLogin className="Title">
                         Login
+                    </TextLogin>
+                    <TextLogin className="requestTest">
+                        {request}
                     </TextLogin>
                     <TextField 
                         className="Inputs"
