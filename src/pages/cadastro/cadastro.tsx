@@ -11,14 +11,12 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Cadastro(){
 
     const navigate = useNavigate();
-
-    const [name, setName] = useState('');
-
-    const [age, setAge] = useState('');
-    
-    const [email, setEmail] = useState('');
-    
-    const [password, setPassword] = useState('');
+    const [formInputs, setFormInputs] = useState({
+        name: '',
+        age: '',
+        email: '',
+        password: ''
+    })
     
     const [request, setRequest] = useState("");
 
@@ -38,10 +36,10 @@ export default function Cadastro(){
         
         try{
             const registerRequest = await http.post("api/cadastrar",{
-                name: name,
-                age: age,
-                email: email,
-                password: password
+                name: formInputs.name,
+                age: formInputs.age,
+                email: formInputs.email,
+                password: formInputs.password
             })
             registerWorked(registerRequest);
         }
@@ -65,42 +63,42 @@ export default function Cadastro(){
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
-                        value={name}
+                        value={formInputs.name}
                         label="Nome" 
                         variant="outlined"
                         required
                         type='text'
-                        onChange={e => setName(e.target.value)}
+                        onChange={e => setFormInputs( prev => ({...prev, name: e.target.value}))}
                     />
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
-                        value={age}
+                        value={formInputs.age}
                         label="Idade" 
                         variant="outlined"
                         required
                         type='number'
-                        onChange={e => setAge(e.target.value)}
+                        onChange={e => setFormInputs( prev => ({...prev, age: e.target.value}))}
                     />
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
                         required
-                        value={email}
+                        value={formInputs.email}
                         label="Email" 
                         variant="outlined"
                         type='email'
-                        onChange={e => setEmail(e.target.value)}
+                        onChange={e => setFormInputs( prev => ({...prev, email: e.target.value}))}
                     />
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
-                        value={password}
+                        value={formInputs.password}
                         label="Senha" 
                         variant="outlined"
                         required
                         type="password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={e => setFormInputs( prev => ({...prev, password: e.target.value}))}
                     />
                     <Button variant="contained" className="buttonLogin" type="submit">Cadastrar</Button>
                     <TextoLink className="textLink">

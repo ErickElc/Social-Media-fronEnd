@@ -9,8 +9,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Login(){
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState("");
+    const [inputs, setInputs] = useState({
+        email: '',
+        password: ''
+    })
     const [request, setRequest] = useState("");
 
     async function isLogged(login :any){
@@ -24,8 +26,8 @@ export default function Login(){
         e.preventDefault();
         try {
             const loginRequest = await http.post("/api/login", {
-                email: email,
-                password: password
+                email: inputs.email,
+                password: inputs.password
             });
             isLogged(loginRequest);
             
@@ -50,18 +52,20 @@ export default function Login(){
                         id="outlined-basic"
                         label="Email" 
                         variant="outlined"
+                        value={inputs.email}
                         required
                         type='email'
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setInputs(prev => ({...prev, email: e.target.value }))}
                     />
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
-                        label="Senha" 
+                        label="Senha"   
+                        value={inputs.password}
                         variant="outlined"
                         required
                         type="password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setInputs(prev => ({...prev, password: e.target.value }))}
                     />
                     <Button variant="contained" className="buttonLogin" type="submit">Login</Button>
                     <TextoLink className="textLink">
