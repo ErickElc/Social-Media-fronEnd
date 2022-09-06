@@ -1,10 +1,9 @@
 import { DivBody, DivBord, TextLogin, TextoLink} from "../../styles/components";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import '../../styles/Styles.scss'
-import React, { useState } from "react";
 import http from "../../api/api";
-import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -12,13 +11,12 @@ export default function Cadastro(){
 
     const navigate = useNavigate();
 
-    const [name, setName] = useState('');
-
-    const [age, setAge] = useState('');
-    
-    const [email, setEmail] = useState('');
-    
-    const [password, setPassword] = useState('');
+    const [inputs, setInputs] = useState({
+        name: '',
+        age: '',
+        email: '',
+        password: ''
+    })
     
     const [request, setRequest] = useState("");
 
@@ -38,10 +36,10 @@ export default function Cadastro(){
         
         try{
             const registerRequest = await http.post("api/cadastrar",{
-                name: name,
-                age: age,
-                email: email,
-                password: password
+                name: inputs.name,
+                age: inputs.age,
+                email: inputs.email,
+                password: inputs.password
             })
             registerWorked(registerRequest);
         }
@@ -65,42 +63,42 @@ export default function Cadastro(){
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
-                        value={name}
+                        value={inputs.name}
                         label="Nome" 
                         variant="outlined"
                         required
                         type='text'
-                        onChange={e => setName(e.target.value)}
+                        onChange={e => setInputs(prev => ({...prev, name: e.target.value}))}
                     />
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
-                        value={age}
+                        value={inputs.age}
                         label="Idade" 
                         variant="outlined"
                         required
                         type='number'
-                        onChange={e => setAge(e.target.value)}
+                        onChange={e => setInputs(prev => ({...prev, age: e.target.value}))}
                     />
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
                         required
-                        value={email}
+                        value={inputs.email}
                         label="Email" 
                         variant="outlined"
                         type='email'
-                        onChange={e => setEmail(e.target.value)}
+                        onChange={e => setInputs(prev => ({...prev, email: e.target.value}))}
                     />
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
-                        value={password}
+                        value={inputs.password}
                         label="Senha" 
                         variant="outlined"
                         required
                         type="password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setInputs(prev => ({...prev, password: e.target.value}))}
                     />
                     <Button variant="contained" className="buttonLogin" type="submit">Cadastrar</Button>
                     <TextoLink className="textLink">

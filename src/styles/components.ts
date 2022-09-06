@@ -9,6 +9,95 @@ export const DivBody = styled.div`
     align-items: center;
 
 `
+export const MainComponent = styled.main`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+`
+export const ShareFeedComponnet = styled.div`
+    -moz-box-shadow: 0px 1px 5px 0px #676767;
+    -webkit-box-shadow: 0px 1px 5px 0px #676767;
+    box-shadow: 0px 1px 5px 0px #676767;
+    padding: 50px;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+`
+export const InputComponent = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 2px solid gray;
+    border-radius: 100px;
+    width: 230px;
+    height: 50px;
+    user-select:none;
+    &:hover{
+        cursor: pointer;
+    }
+    &:active{
+        background-color: darkgray;
+        color: white;
+    }
+    
+`
+
+export const FeedComponent = styled.div`
+    padding: 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    -moz-box-shadow: 0px 1px 5px 0px #676767;
+    -webkit-box-shadow: 0px 1px 5px 0px #676767;
+    box-shadow: 0px 1px 5px 0px #676767;
+    justify-self: center;
+`
+export const PostSchema = styled.div`
+    -moz-box-shadow: 0px 1px 5px 0px #676767;
+    -webkit-box-shadow: 0px 1px 5px 0px #676767;
+    box-shadow: 0px 1px 5px 0px #676767;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    flex-flow: column wrap;
+    max-width: 382px;
+    word-break: break-all;
+    border-radius: 10px;
+`
+
+export const HeaderComponent = styled.header`
+    color: white;
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    background-color: #5800FF;
+    align-items: center;
+`
+export const FormComponent = styled.form`
+
+    display: flex;
+    flex-flow: column;
+    padding: 40px;
+
+`
+export const StyleForm = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 500,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+    padding: '0px',
+    display: 'flex',
+    flexDirection: 'column'
+};
 export const DivBord = styled.form`
     background-color: white;
     box-shadow: 0px 1px 5px 0px #676767;

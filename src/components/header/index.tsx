@@ -1,37 +1,37 @@
 import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-
-
 import "./header.scss";
-
-
-export default function Header(){
-
+import { HeaderComponent } from '../../styles/components';
+import { SearchOutlined } from '@mui/icons-material';
+export default function Header(props: any){
     return(
-        
-        <div className="containerHeader">
+        <HeaderComponent>
             <div className="">
-                <h2>WorkMedia</h2>
-            </div>
-            <div className="">
-                <TextField
-                    id="input-with-icon-textfield"
-                    label="TextField"
-                    InputProps={{
-                    startAdornment: (
-                    <InputAdornment position="start">
-                        <Avatar src="/broken-image.jpg"/>
-                    </InputAdornment>
-                    ),
-                    }}
-                    variant="standard"
-                />
+                <h2 className='text-2xl font-bold mx-0'>
+                    WorkMedia
+                </h2>
             </div>
             <div>
-                <Avatar src="/broken-image.jpg"/>
+                <TextField 
+                    id="outlined" 
+                    className="bg-white rounded-lg"
+                    label="Pesquise por perfis" 
+                    variant="outlined" 
+                    InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="start">
+                            <SearchOutlined/>
+                          </InputAdornment>
+                         )
+                        }}
+                />
             </div>
-        </div>
+            <div className='flex items-center mx-3'>
+                <Avatar src="/broken-image.jpg" className='mr-3'/>
+                <p>{props.data.name}</p>
+            </div>
+        </HeaderComponent>
     )
 
 };

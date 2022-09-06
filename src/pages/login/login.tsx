@@ -1,41 +1,32 @@
 import { DivBody, DivBord, TextLogin, TextoLink} from "../../styles/components";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import '../../styles/Styles.scss';
+import { useAuth } from "../../auth/useAuth";
 import './login.scss';
-import http from "../../api/api";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 
 export default function Login(){
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState("");
+    const auth = useAuth();
     const [request, setRequest] = useState("");
-
-    async function isLogged(login :any){
-        console.log(login.request.status);
-        if(login.request.status === 202){
-            alert("Login efetuado com sucesso");
-            navigate("/");
-        }
-    };
+    const [inputs, setInputs] = useState({
+        email: '',
+        password: ''
+    });
     async function SubmitForm(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault();
         try {
-            const loginRequest = await http.post("/api/login", {
-                email: email,
-                password: password
-            });
-            isLogged(loginRequest);
-            
+            await auth.authenticate(inputs.email, inputs.password);
+            navigate('/');
+
         } catch (error) {
             setRequest("email ou senha está incorreta!");
             console.log(error);
         }
     };
 
-    return(
+    return( 
         <div className="div-bg">
             <DivBody className="DivBody">
                 <DivBord className="ContainerBord" onSubmit={SubmitForm}>
@@ -52,7 +43,7 @@ export default function Login(){
                         variant="outlined"
                         required
                         type='email'
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setInputs(prev => ({...prev, email: e.target.value}))}
                     />
                     <TextField 
                         className="Inputs"
@@ -61,7 +52,7 @@ export default function Login(){
                         variant="outlined"
                         required
                         type="password"
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setInputs(prev => ({...prev, password: e.target.value}))}
                     />
                     <Button variant="contained" className="buttonLogin" type="submit">Login</Button>
                     <TextoLink className="textLink">
