@@ -1,21 +1,34 @@
-import { PostSchema } from "../../styles/components";
+import { PostSchema, PubliContainer } from "../../styles/components";
 import Avatar from '@mui/material/Avatar';
-
+import { useEffect, useState } from "react";
+import http from "../../api/api";
+import { IPost } from "../../interface/Interface";
 export default function PostTemplate(){
     
-    const name = 'your Name';
+    const [postData, setPostData] = useState([]);
+
+    useEffect(()=>{
+        http.get('api/posts/all').then(res => {                
+                setPostData(res.data)
+            })
+            .catch(err => console.log(err))
+    },[])
+
     return(
-        <div className="flex flex-column justify-center">
-            <PostSchema>
-                <div className="flex flex-row">
-                    <Avatar src="/broken-image.jpg" className="mr-3"/>
-                    <p className="flex items-center">{name}</p>
-                </div>
-                <div>
-                    <h4>CONTENajdhadjadhadjadjadahdjhajdahjdajdahdajdjjadjajhdahdjahjdjhT</h4>
-                    <p>IMAGEM</p>
-                </div>
-            </PostSchema>
+        <div>
+            <PubliContainer>
+                {postData?.map((item: IPost) => (
+                    <PostSchema key={item._id}>
+                        <div className="flex flex-row mb-10">
+                            <Avatar src="/broken-image.jpg" className="mr-3"/>
+                            <p className="flex items-center">{item.autor.name}</p>
+                        </div>
+                        <div>
+                            <p>{item.content}</p>
+                        </div>
+                    </PostSchema>   
+                ))}
+            </PubliContainer>
         </div>
     )
 }

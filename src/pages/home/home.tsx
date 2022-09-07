@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { getUserLocalStorage } from "../../auth/util";
 import {useEffect, useState} from 'react'
 import { useAuth } from "../../auth/useAuth";
@@ -10,8 +11,8 @@ export default function Home(){
     const user = getUserLocalStorage();
     const auth = useAuth();
     const [data, setData] = useState({});
+    auth.VerifyLoggin();
     useEffect(() => {
-        auth.VerifyLoggin();
         GetDataOfUser();
     },[])
 
@@ -21,7 +22,6 @@ export default function Home(){
                 token: user.token,
                 email: user.email
             })
-            console.log(Data);
             if(Data){
                 return setData(Data.data);
             }

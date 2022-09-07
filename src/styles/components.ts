@@ -15,6 +15,13 @@ export const MainComponent = styled.main`
     align-items: center;
 
 `
+
+export const PubliContainer = styled.div`
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+`
 export const ShareFeedComponnet = styled.div`
     -moz-box-shadow: 0px 1px 5px 0px #676767;
     -webkit-box-shadow: 0px 1px 5px 0px #676767;
@@ -60,13 +67,12 @@ export const PostSchema = styled.div`
     -moz-box-shadow: 0px 1px 5px 0px #676767;
     -webkit-box-shadow: 0px 1px 5px 0px #676767;
     box-shadow: 0px 1px 5px 0px #676767;
-    display: flex;
-    justify-content: center;
-    padding: 30px;
-    flex-flow: column wrap;
-    max-width: 382px;
+    padding: 50px;
     word-break: break-all;
     border-radius: 10px;
+    margin-bottom: 30px;
+    width: 380px;
+    height: 40vh;
 `
 
 export const HeaderComponent = styled.header`

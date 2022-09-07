@@ -1,17 +1,33 @@
-import { useModalContext } from '../../../context/modal.context';
 import { FormComponent, StyleForm } from '../../../styles/components';
+import { useModalContext } from '../../../context/modal.context';
+import { useAuth } from '../../../auth/useAuth';
 import TextField from '@mui/material/TextField';
 import { Box, Button } from '@mui/material';
-import {useState} from 'react'
 import Modal from '@mui/material/Modal';
+import http from '../../../api/api';
+import {useState} from 'react'
 import './style.scss';
-export default function ModalPost(){
+export default function ModalPost(props: any){
     const modalContext = useModalContext();
     const [inputs, setInputs] = useState({
-        container: ''
+        content: ''
     });
-    function SubmitForm(e: any){
+    const context = useAuth();
+
+    async function SubmitForm(e: any){
         e.preventDefault();
+
+        try {
+            await http.post('api/posts/new',{
+                content: inputs.content,
+                autor:  props.props.id_,
+                token: context.token
+            })
+            alert('Post criado com sucesso!');
+            window.location.reload();
+        } catch (error) {
+            console.log(error)
+        }
     }
     function ToggleMode(){
         modalContext.openModal();
@@ -35,7 +51,7 @@ export default function ModalPost(){
                     variant="outlined"
                     required
                     type='text'
-                    onChange={(e) => setInputs(prev => ({...prev, container: e.target.value}))}
+                    onChange={(e) => setInputs(prev => ({...prev, content: e.target.value}))}
                 />
                 <Button variant="contained" className="ButtonLogin" type="submit">Enviar Post</Button>
             </FormComponent>

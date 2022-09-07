@@ -8,6 +8,7 @@ export default function Main(props :any){
     const ToggleMode = () =>{
         openModal();
     }
+    
     return(
        <MainComponent>
             <FeedComponent className="mt-4">
@@ -22,7 +23,7 @@ export default function Main(props :any){
                 <Avatar src="/broken-image.jpg" className="mb-2"/>
                 <p>{props.data.name}</p>
             </FeedComponent>
-            <ModalPost/>
+            <ModalPost props={props.data}/>
        </MainComponent>
     )
 }

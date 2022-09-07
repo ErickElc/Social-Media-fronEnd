@@ -8,6 +8,7 @@ import  { getUserLocalStorage, LoginRequest, setUserLocalStorage } from "./util"
 export const AuthContext = createContext<IContext>({} as IContext);
 
 export const AuthProvider = ({children} : IAuthProvider) =>{
+    
     const [user, setUser] = useState<IUser | null>();
     const navigate = useNavigate();
     
@@ -17,9 +18,9 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
             setUser(User);
         }
     },[]);
+    
 
     async function VerifyLoggin() {
-
         const User = getUserLocalStorage();
         try {
             await http.post('admin/free',{
@@ -28,16 +29,16 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
             return console.log('autorizado');
             
         } catch (error) {
-            alert('você não tem acesso');
-            navigate('/login')
+            navigate('/login');
         }
         
     }
     async function authenticate(email: string, password: string) {
         const response = await LoginRequest(email, password);
-        const payload = {token: response, email};
+        const payload = {token: response?.data, email};
         setUser(payload);
         setUserLocalStorage(payload);
+        return response?.status;
     }
     function logout(){
         setUser(null);

@@ -17,8 +17,9 @@ export default function Login(){
     async function SubmitForm(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault();
         try {
-            await auth.authenticate(inputs.email, inputs.password);
-            navigate('/');
+            const loginRequest = await auth.authenticate(inputs.email, inputs.password);
+            if(loginRequest === 202)return navigate('/');
+            else return setRequest("email ou senha está incorreta!");
 
         } catch (error) {
             setRequest("email ou senha está incorreta!");
@@ -70,6 +71,6 @@ export default function Login(){
                 </DivBord>
             </DivBody>
         </div>
-    )
+    );
 
 }

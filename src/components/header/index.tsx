@@ -4,7 +4,12 @@ import InputAdornment from '@mui/material/InputAdornment';
 import "./header.scss";
 import { HeaderComponent } from '../../styles/components';
 import { SearchOutlined } from '@mui/icons-material';
+import { useAuth } from '../../auth/useAuth';
 export default function Header(props: any){
+    const auth = useAuth();
+    function Logout(){
+        auth.logout();
+    }
     return(
         <HeaderComponent>
             <div className="">
@@ -30,6 +35,9 @@ export default function Header(props: any){
             <div className='flex items-center mx-3'>
                 <Avatar src="/broken-image.jpg" className='mr-3'/>
                 <p>{props.data.name}</p>
+                <div onClick={Logout}>
+                    <p><a href='/login'>Logout</a></p>
+                </div>
             </div>
         </HeaderComponent>
     )
