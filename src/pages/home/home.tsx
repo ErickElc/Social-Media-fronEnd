@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { getUserLocalStorage } from "../../auth/util";
 import {useEffect, useState} from 'react'
 import { useAuth } from "../../auth/useAuth";
@@ -6,6 +5,8 @@ import Header from "../../components/header";
 import Main from "../../components/main/Main";
 import PostTemplate from "../../components/postTemplate";
 import http from "../../api/api";
+import { ModalHeaderProvider } from "../../context/modalHeader.context";
+import ModalPerfil from "../../components/modal/modalPerfil/ModalPerfil";
 
 export default function Home(){
     const user = getUserLocalStorage();
@@ -18,7 +19,7 @@ export default function Home(){
 
     async function GetDataOfUser(){
         try {
-            const Data = await http.post('/api/user-data',{
+            const Data = await http.post('/api/users/user-data',{
                 token: user.token,
                 email: user.email
             })
@@ -30,12 +31,14 @@ export default function Home(){
             console.log(error);
         }
     }
-     
     return(
-        <>
-            <Header data={data}/>
-            <Main data={data}/>
-            <PostTemplate/>
-        </>
+        <ModalHeaderProvider>
+            <>
+                <Header/>
+                <Main data={data}/>
+                <PostTemplate/>
+                <ModalPerfil data={data}/>
+            </>
+        </ModalHeaderProvider>
     )
 }

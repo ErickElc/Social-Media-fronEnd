@@ -35,7 +35,7 @@ export default function Cadastro(){
         console.log("Cadastrando Usuário!");
         
         try{
-            const registerRequest = await http.post("api/cadastrar",{
+            const registerRequest = await http.post("api/users/cadastrar",{
                 name: inputs.name,
                 age: inputs.age,
                 email: inputs.email,

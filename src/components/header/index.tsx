@@ -1,14 +1,37 @@
+import "./header.scss";
 import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import "./header.scss";
-import { HeaderComponent } from '../../styles/components';
 import { SearchOutlined } from '@mui/icons-material';
-import { useAuth } from '../../auth/useAuth';
-export default function Header(props: any){
-    const auth = useAuth();
-    function Logout(){
-        auth.logout();
+import InputAdornment from '@mui/material/InputAdornment';
+import { HeaderComponent, HeaderPerfil } from '../../styles/components';
+import { useModalHeaderContext } from "../../context/modalHeader.context";
+import { useState, useEffect} from 'react'
+import http from "../../api/api";
+import { getUserLocalStorage } from "../../auth/util";
+import { IPerfil } from "../../interface/Interface";
+export default function Header(){
+    const modalContext = useModalHeaderContext();
+    const [data, setData] = useState<IPerfil>();
+    const user = getUserLocalStorage();
+    function ToggleMode(){
+        modalContext.openModal();
+    }
+    useEffect(()=>{
+        GetDataOfUser();
+    },[])
+    async function GetDataOfUser(){
+        try {
+            const Data = await http.post('/api/users/user-data',{
+                token: user.token,
+                email: user.email
+            })
+            if(Data){
+                return setData(Data.data);
+            }
+            return console.log('error');
+        } catch (error) {
+            console.log(error);
+        }
     }
     return(
         <HeaderComponent>
@@ -32,13 +55,10 @@ export default function Header(props: any){
                         }}
                 />
             </div>
-            <div className='flex items-center mx-3'>
+            <HeaderPerfil className='flex items-center mx-3 ' onClick={ToggleMode}>
                 <Avatar src="/broken-image.jpg" className='mr-3'/>
-                <p>{props.data.name}</p>
-                <div onClick={Logout}>
-                    <p><a href='/login'>Logout</a></p>
-                </div>
-            </div>
+                <p>{data?.name}</p>
+            </HeaderPerfil>
         </HeaderComponent>
     )
 

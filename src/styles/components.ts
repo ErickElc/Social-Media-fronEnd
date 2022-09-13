@@ -131,3 +131,54 @@ export const TextoLink = styled.p`
     margin-top: 10px;
 
 `
+export const ModalHeader = styled.div`
+    box-shadow: 0px 1px 5px 0px #676767;
+    -moz-box-shadow: 0px 1px 5px 0px #676767;
+    -webkit-box-shadow: 0px 1px 5px 0px #676767;
+    display:flex;
+    flex-flow: column;
+    width: 160px;
+    padding: 30px;
+    position: relative;
+    top: -431vh;
+    left: 80vw;
+    z-index: 1000;
+    background-color: white;
+    border-radius: 10px;
+`
+
+export const HeaderPerfil = styled.div`
+    display: flex;
+    margin: 3px;
+    align-items: center;
+    &:hover{
+        cursor: pointer;
+        user-select:none;
+    }
+`
+export const sectionHeader = styled.section`
+    box-shadow: 0px 1px 5px 0px #676767;
+    display:flex;
+    flex-flow: column;
+`
+export const SectionContainer = styled.main`
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+`
+
+export const PerfilComponent = styled.div`
+    box-shadow: 0px 1px 5px 0px #676767;
+    display:flex;
+    flex-flow: column wrap;
+    padding: 40px;
+    border-radius: 10px;
+    margin-top: 30px;
+
+`
+export const DivContainer = styled.div`
+    display:flex;
+    flex-flow: column wrap;
+    align-items: center;
+`

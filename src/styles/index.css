@@ -5,8 +5,11 @@
     margin: 0px;
     padding: 0px;
 }
-
 body{
     overflow-y: auto;
     overflow-x: hidden;
+}
+#Avatar{
+    width: 80px;
+    height: 80px;
 }

@@ -20,3 +20,18 @@ export interface IPost extends IAutor{
     _v: number, 
     _id: string
 }
+export interface IPost2 extends IAutor{
+    content: string,
+    createdDate: string
+    _v: number, 
+    _id: string
+    Ipost2: () => IPost[] | null
+}
+export interface IPerfil{
+    _id: string,
+    name: string,
+    age: number
+    email: string,
+    createdDate: string ,
+    status: Number
+}
