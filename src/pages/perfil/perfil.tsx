@@ -1,6 +1,6 @@
 import { DivContainer,PerfilComponent, PostSchema, PubliContainer, SectionContainer } from '../../styles/components';
 import { ModalHeaderProvider } from '../../context/modalHeader.context';
-import { IPerfil, IPost, IPost2 } from '../../interface/Interface';
+import { IPerfil, IPost} from '../../interface/Interface';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from '../../components/header';

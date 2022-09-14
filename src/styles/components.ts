@@ -140,7 +140,7 @@ export const ModalHeader = styled.div`
     width: 160px;
     padding: 30px;
     position: relative;
-    top: -431vh;
+    top: -410vh;
     left: 80vw;
     z-index: 1000;
     background-color: white;
