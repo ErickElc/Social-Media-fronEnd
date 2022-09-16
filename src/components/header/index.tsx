@@ -1,30 +1,32 @@
 import "./header.scss";
+import http from "../../api/api";
 import Avatar from '@mui/material/Avatar';
+import { useState, useEffect} from 'react';
 import TextField from '@mui/material/TextField';
+import { IPerfil } from "../../interface/Interface";
 import { SearchOutlined } from '@mui/icons-material';
+import { getUserLocalStorage } from "../../auth/util";
 import InputAdornment from '@mui/material/InputAdornment';
 import { HeaderComponent, HeaderPerfil } from '../../styles/components';
 import { useModalHeaderContext } from "../../context/modalHeader.context";
-import { useState, useEffect} from 'react'
-import http from "../../api/api";
-import { getUserLocalStorage } from "../../auth/util";
-import { IPerfil } from "../../interface/Interface";
+
 export default function Header(){
-    const modalContext = useModalHeaderContext();
-    const [data, setData] = useState<IPerfil>();
+
     const user = getUserLocalStorage();
+    const [data, setData] = useState<IPerfil>();
+    const modalContext = useModalHeaderContext();
+
     function ToggleMode(){
         modalContext.openModal();
-    }
+        
+    };
+
     useEffect(()=>{
         GetDataOfUser();
-    },[])
+    },[]);
     async function GetDataOfUser(){
         try {
-            const Data = await http.post('/api/users/user-data',{
-                token: user.token,
-                email: user.email
-            })
+            const Data = await http.get(`/api/users/user/${user.email}`);
             if(Data){
                 return setData(Data.data);
             }
@@ -32,7 +34,8 @@ export default function Header(){
         } catch (error) {
             console.log(error);
         }
-    }
+    };
+
     return(
         <HeaderComponent>
             <div className="">

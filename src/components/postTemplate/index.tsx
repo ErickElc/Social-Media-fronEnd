@@ -21,10 +21,10 @@ export default function PostTemplate(){
                     <PostSchema key={item._id}>
                         <div className="flex flex-row mb-10">
                             <Avatar src="/broken-image.jpg" className="mr-3"/>
-                            <p className="flex items-center">{item.autor.name}</p>
+                            <p className="flex items-center">{item?.autor?.name}</p>
                         </div>
                         <div>
-                            <p>{item.content}</p>
+                            <p>{item?.content}</p>
                         </div>
                     </PostSchema>   
                 ))}

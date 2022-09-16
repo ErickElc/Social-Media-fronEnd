@@ -19,10 +19,7 @@ export default function Home(){
 
     async function GetDataOfUser(){
         try {
-            const Data = await http.post('/api/users/user-data',{
-                token: user.token,
-                email: user.email
-            })
+            const Data = await http.get(`/api/users/user/${user.email}`);
             if(Data){
                 return setData(Data.data);
             }
