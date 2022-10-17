@@ -1,4 +1,5 @@
-import { DivContainer,PerfilComponent, PostSchema, PubliContainer, SectionContainer } from '../../styles/components';
+import { DivContainer, PostSchema, PubliContainer, SectionContainer } from '../../styles/components';
+import ModalPerfil from '../../components/modal/modalPerfil/ModalPerfil';
 import { ModalHeaderProvider } from '../../context/modalHeader.context';
 import { IPerfil, IPost} from '../../interface/Interface';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -8,14 +9,14 @@ import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
 import http from '../../api/api';
 import '../../styles/index.css'
-import ModalPerfil from '../../components/modal/modalPerfil/ModalPerfil';
+import { ProtectedLayoutNoLogged } from '../../components/protectedLayout/protectedLayout';
 export default function Perfil(){
     const {id} = useParams();
     const [data, setData] = useState<IPerfil>();
     const [postsPerfil, setPostsPerfil] = useState([]);
     const navigate = useNavigate();
     useEffect(()=>{
-        http.get(`api/users/user/${id}`).then((res)=>{
+        http.get(`api/users/${id}`).then((res)=>{
             if(res.data !== null){
                 setData(res.data)
             }
@@ -26,17 +27,15 @@ export default function Perfil(){
         })
     },[])
     useEffect(()=>{
-        http.get(`api/posts/${id}`).then((res)=> {
+        http.get(`api/posts/list/user/${id}`).then((res)=> {
             setPostsPerfil(res.data);
         }).catch(err => {
             console.log(err)
         })
     },[]);
     return(
-        <ModalHeaderProvider>
+        <ProtectedLayoutNoLogged>
             <>
-                <Header/>
-                <ModalPerfil data={data}/>
                 <SectionContainer>
                     <div>
                         <PubliContainer>
@@ -66,8 +65,8 @@ export default function Perfil(){
                         </PubliContainer>
                     </div>
                 </SectionContainer>
-            </>
-        </ModalHeaderProvider>
+           </>
+        </ProtectedLayoutNoLogged>
 
     )
 

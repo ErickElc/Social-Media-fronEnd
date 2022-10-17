@@ -23,7 +23,7 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
     async function VerifyLoggin() {
         const User = getUserLocalStorage();
         try {
-            await http.post('admin/free',{
+            await http.post('auth/free',{
                 token: User?.token
             });
             return console.log('autorizado');
@@ -35,10 +35,10 @@ export const AuthProvider = ({children} : IAuthProvider) =>{
     }
     async function authenticate(email: string, password: string) {
         const response = await LoginRequest(email, password);
-        const payload = {token: response?.data, email};
+        const payload = {token: response?.request.data, email, name: response?.dataRequest.name, _id: response?.dataRequest._id, age: response?.dataRequest.age};
         setUser(payload);
         setUserLocalStorage(payload);
-        return response?.status;
+        return response?.request.status;
     }
     function logout(){
         setUser(null);

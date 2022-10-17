@@ -18,7 +18,8 @@ export interface IPost extends IAutor{
    content: string,
    createdDate: string
     _v: number, 
-    _id: string
+    _id: string,
+    image_url: string
 }
 export interface IPost2 extends IAutor{
     content: string,
@@ -34,4 +35,11 @@ export interface IPerfil{
     email: string,
     createdDate: string ,
     status: Number
+}
+export interface IData{
+    _id: string,
+    name: string,
+    age: number,
+    email: string,
+    createdDate: string,
 }

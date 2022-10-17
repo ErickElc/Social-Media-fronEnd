@@ -14,5 +14,5 @@ export interface IContext extends IUser{
 
 
 export interface IAuthProvider{
-    children: JSX.Element;
+    children: JSX.Element[] | JSX.Element;
 }

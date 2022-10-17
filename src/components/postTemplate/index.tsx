@@ -1,4 +1,4 @@
-import { PostSchema, PubliContainer } from "../../styles/components";
+import { PostImage, PostSchema, PubliContainer } from "../../styles/components";
 import Avatar from '@mui/material/Avatar';
 import { useEffect, useState } from "react";
 import http from "../../api/api";
@@ -8,7 +8,7 @@ export default function PostTemplate(){
     const [postData, setPostData] = useState([]);
 
     useEffect(()=>{
-        http.get('api/posts/all').then(res => {                
+        http.get('api/posts/list/all').then(res => {                
                 setPostData(res.data)
             })
             .catch(err => console.log(err))
@@ -25,6 +25,9 @@ export default function PostTemplate(){
                         </div>
                         <div>
                             <p>{item?.content}</p>
+                        </div>
+                        <div>
+                            <PostImage src={item?.image_url} alt={item?.content} className="self-center"/>
                         </div>
                     </PostSchema>   
                 ))}

@@ -1,25 +1,20 @@
-import { getUserLocalStorage } from "../../auth/util";
-import {useEffect, useState} from 'react'
-import { useAuth } from "../../auth/useAuth";
-import Header from "../../components/header";
-import Main from "../../components/main/Main";
+import { ProtectedLayoutNoLogged } from "../../components/protectedLayout/protectedLayout";
 import PostTemplate from "../../components/postTemplate";
+import { getUserLocalStorage } from "../../auth/util";
+import Main from "../../components/main/Main";
+import {useEffect, useState} from 'react';
 import http from "../../api/api";
-import { ModalHeaderProvider } from "../../context/modalHeader.context";
-import ModalPerfil from "../../components/modal/modalPerfil/ModalPerfil";
 
 export default function Home(){
     const user = getUserLocalStorage();
-    const auth = useAuth();
     const [data, setData] = useState({});
-    auth.VerifyLoggin();
     useEffect(() => {
         GetDataOfUser();
     },[])
 
     async function GetDataOfUser(){
         try {
-            const Data = await http.get(`/api/users/user/${user.email}`);
+            const Data = await http.get(`api/users/${user._id}`);
             if(Data){
                 return setData(Data.data);
             }
@@ -29,13 +24,11 @@ export default function Home(){
         }
     }
     return(
-        <ModalHeaderProvider>
+        <ProtectedLayoutNoLogged>
             <>
-                <Header/>
                 <Main data={data}/>
                 <PostTemplate/>
-                <ModalPerfil data={data}/>
             </>
-        </ModalHeaderProvider>
+        </ProtectedLayoutNoLogged>
     )
 }

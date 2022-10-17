@@ -12,6 +12,9 @@ export const DivBody = styled.div`
 export const MainComponent = styled.main`
     display: flex;
     justify-content: space-evenly;
+    @media (max-width : 800px)  {
+        flex-flow: column;
+    }
     align-items: center;
 
 `
@@ -30,6 +33,9 @@ export const ShareFeedComponnet = styled.div`
     display: flex;
     border-radius: 10px;
     align-items: center;
+    @media (max-width: 420px){
+        width: 240px;
+    }
 `
 export const InputComponent = styled.div`
     display: flex;
@@ -40,6 +46,7 @@ export const InputComponent = styled.div`
     border-radius: 100px;
     width: 230px;
     height: 50px;
+    padding:20px;
     user-select:none;
     &:hover{
         cursor: pointer;
@@ -50,7 +57,22 @@ export const InputComponent = styled.div`
     }
     
 `
-
+export const FeedComponent2 = styled.div`
+ padding: 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    -moz-box-shadow: 0px 1px 5px 0px #676767;
+    -webkit-box-shadow: 0px 1px 5px 0px #676767;
+    box-shadow: 0px 1px 5px 0px #676767;
+    justify-self: center;
+    margin-bottom: 10px;
+    @media (max-width: 800px) {
+        display: none;
+    }
+`
 export const FeedComponent = styled.div`
     padding: 50px;
     border-radius: 10px;
@@ -62,17 +84,29 @@ export const FeedComponent = styled.div`
     -webkit-box-shadow: 0px 1px 5px 0px #676767;
     box-shadow: 0px 1px 5px 0px #676767;
     justify-self: center;
+    margin-bottom: 10px;
+    @media (max-width: 800px) {
+        width: 380px;
+    }
+    @media (max-width: 420px) {
+        width: 240px
+    }
 `
 export const PostSchema = styled.div`
     -moz-box-shadow: 0px 1px 5px 0px #676767;
     -webkit-box-shadow: 0px 1px 5px 0px #676767;
     box-shadow: 0px 1px 5px 0px #676767;
     padding: 50px;
+    display: flex;
+    flex-flow: wrap column;
     word-break: break-all;
     border-radius: 10px;
     margin-bottom: 30px;
     width: 380px;
-    height: 40vh;
+    min-height: 40vh;
+    @media (max-width: 420px){
+        width: 240px;
+    }
 `
 
 export const HeaderComponent = styled.header`
@@ -132,20 +166,18 @@ export const TextoLink = styled.p`
 
 `
 export const ModalHeader = styled.div`
-    box-shadow: 0px 1px 5px 0px #676767;
-    -moz-box-shadow: 0px 1px 5px 0px #676767;
-    -webkit-box-shadow: 0px 1px 5px 0px #676767;
+    color: white;
     display:flex;
     flex-flow: column;
-    width: 160px;
+    width: 250px;
     padding: 30px;
-    position: relative;
-    top: -410vh;
-    left: 80vw;
-    z-index: 1000;
-    background-color: white;
-    border-radius: 10px;
-`
+    position: sticky;
+    bottom: 0px;
+    left: 82vw;
+    z-index: 100;
+    height: 100vh;
+    background-color: #5800FF;
+    `
 
 export const HeaderPerfil = styled.div`
     display: flex;
@@ -181,4 +213,10 @@ export const DivContainer = styled.div`
     display:flex;
     flex-flow: column wrap;
     align-items: center;
+`
+export const PostImage = styled.img`
+    min-height: 200px;
+    width: 300px;
+    align-self: center;
+    text-align: center;
 `
