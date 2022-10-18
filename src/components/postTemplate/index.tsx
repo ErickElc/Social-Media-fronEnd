@@ -1,14 +1,14 @@
 import { AvatarPostImage, PostImage, PostSchema, PubliContainer } from "../../styles/components";
-import { getUserLocalStorage } from "../../auth/util";
+import { Button, TextField } from "@mui/material";
 import { IPost } from "../../interface/Interface";
 import { useEffect, useState } from "react";
-import Avatar from '@mui/material/Avatar';
 import http from "../../api/api";
-import { Button } from "@mui/material";
 export default function PostTemplate(){
     
     const [postData, setPostData] = useState([]);
-    const user = getUserLocalStorage();
+    const [inputs, setInputs] = useState({
+        comments: ''
+    })
     useEffect(()=>{
         http.get('api/posts/list/all').then(res => {                
                 setPostData(res.data)
@@ -32,8 +32,24 @@ export default function PostTemplate(){
                             <p>{item?.content}</p>
                         </div>
                         <div>
-                            <PostImage src={item?.image_url} alt={item?.content} className="self-center"/>
+                            {(item?.image_url) ? (
+                                <PostImage src={item?.image_url} alt={item?.content} className="self-center"/>
+                            ) : ''}
                         </div>
+                        <form className="">
+                            <TextField
+                                id="outlined-basic"
+                                label="Escreva algo sobre essa publicação" 
+                                variant="standard"
+                                value={inputs.comments}
+                                fullWidth
+                                required
+                                type='text'
+                                onChange={(e) => setInputs(prev => ({...prev, comments: e.target.value}))}
+                            />
+                            <span className="mb-3"></span>
+                            <Button fullWidth variant="contained">Enviar</Button>
+                        </form>
                     </PostSchema>   
                 ))}
             </PubliContainer>

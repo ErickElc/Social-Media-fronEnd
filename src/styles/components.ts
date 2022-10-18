@@ -10,8 +10,15 @@ export const DivBody = styled.div`
 
 `
 export const MainComponent = styled.main`
+    background: rgb(141,5,240);
+background: linear-gradient(90deg, rgba(141,5,240,1) 0%, rgba(79,0,176,1) 35%, rgba(103,0,119,1) 100%);
+    /* background-color: #5F6F94; */
     display: flex;
     justify-content: space-evenly;
+    flex-flow: column;
+    @media (max-width : 1100px)  {
+        flex-flow: column;
+    }
     @media (max-width : 800px)  {
         flex-flow: column;
     }
@@ -26,6 +33,7 @@ export const PubliContainer = styled.div`
     align-items: center;
 `
 export const ShareFeedComponnet = styled.div`
+    background-color: whitesmoke;
     -moz-box-shadow: 0px 1px 5px 0px #676767;
     -webkit-box-shadow: 0px 1px 5px 0px #676767;
     box-shadow: 0px 1px 5px 0px #676767;
@@ -33,6 +41,7 @@ export const ShareFeedComponnet = styled.div`
     display: flex;
     border-radius: 10px;
     align-items: center;
+    width: 580px;
     @media (max-width: 420px){
         width: 240px;
     }
@@ -44,9 +53,12 @@ export const InputComponent = styled.div`
     text-align: center;
     border: 2px solid gray;
     border-radius: 100px;
-    width: 230px;
+    width: 430px;
     height: 50px;
     padding:20px;
+    @media (max-width: 420px){
+        width: 230px;
+    }
     user-select:none;
     &:hover{
         cursor: pointer;
@@ -69,11 +81,12 @@ export const FeedComponent2 = styled.div`
     box-shadow: 0px 1px 5px 0px #676767;
     justify-self: center;
     margin-bottom: 10px;
-    @media (max-width: 800px) {
+    @media (max-width: 1100px) {
         display: none;
     }
 `
 export const FeedComponent = styled.div`
+    background-color: whitesmoke;
     padding: 50px;
     border-radius: 10px;
     display: flex;
@@ -85,24 +98,24 @@ export const FeedComponent = styled.div`
     box-shadow: 0px 1px 5px 0px #676767;
     justify-self: center;
     margin-bottom: 10px;
-    @media (max-width: 800px) {
-        width: 380px;
-    }
+    width: 580px;
     @media (max-width: 420px) {
         width: 240px
     }
 `
 export const PostSchema = styled.div`
+background-color: whitesmoke;
     -moz-box-shadow: 0px 1px 5px 0px #676767;
     -webkit-box-shadow: 0px 1px 5px 0px #676767;
     box-shadow: 0px 1px 5px 0px #676767;
     padding: 50px;
     display: flex;
     flex-flow: wrap column;
+    justify-content: space-between;
     word-break: break-all;
     border-radius: 10px;
     margin-bottom: 30px;
-    width: 380px;
+    width: 580px;
     min-height: 40vh;
     @media (max-width: 420px){
         width: 240px;
@@ -176,14 +189,23 @@ export const ModalHeader = styled.div`
     color: white;
     display:flex;
     flex-flow: column;
-    width: 250px;
+    width: 30%;
     padding: 30px;
-    position: sticky;
-    bottom: 0px;
-    left: 82vw;
-    z-index: 100;
+    position: fixed;
+    top: 0;
+    margin-right: -2.5em;
+    left: 71%;
+    z-index: 10000;
     height: 100vh;
-    background-color: #5800FF;
+    background-color: #26006e;
+    @media (max-width: 700px) {
+        width:50%;
+        left: 51%;
+    }
+    @media (max-width: 400px) {
+        width:100%;
+        left: 0%;
+    }
     `
 
 export const HeaderPerfil = styled.div`
@@ -222,8 +244,10 @@ export const DivContainer = styled.div`
     align-items: center;
 `
 export const PostImage = styled.img`
-    min-height: 200px;
-    width: 300px;
+    max-height: 300px;
+    max-width: 500px;
+    height: auto;
+    width: auto;
     align-self: center;
     text-align: center;
 `
@@ -235,9 +259,9 @@ export const AvatarPostImage = styled.img`
     border-radius: 50%;
 `
 export const AvatarImage = styled.img`
-    width: 80px;
-    height: 90px;
-    max-height: 90px;
-    max-width: 80px;
+    /* width: auto;
+    height: auto; */
+    max-height: 100px;
+    max-width: 100px;
     border-radius: 50%;
 `

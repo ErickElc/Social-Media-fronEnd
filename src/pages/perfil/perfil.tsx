@@ -60,7 +60,7 @@ export default function Perfil(){
                                     <p>{item?.content}</p>
                                 </div>
                                 <div>
-                                    <PostImage src={item?.image_url} alt={item?.content} className="self-center"/>
+                                    {(item?.image_url) ? <PostImage src={item?.image_url} alt={item?.content} className="self-center"/> : ''}
                                 </div>
                             </PostSchema>   
                         ))}
