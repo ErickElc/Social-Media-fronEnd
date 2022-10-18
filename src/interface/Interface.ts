@@ -1,3 +1,9 @@
+import { SetStateAction } from "react";
+
+export interface IDataContext{
+    userData?: IData;
+    setUserData: React.Dispatch<SetStateAction<IData | undefined>>;
+}
 export interface IModalState {
     open?: boolean
 }
@@ -5,25 +11,18 @@ export interface IContextModal extends IModalState{
     openModal: () => void;
     modalState: IModalState;
 }
-export interface IAutor{
-    autor: {
-        _id: string,
-        name: string,
-        age: number
-        email: string,
-        createdDate: string
-    }
-}
-export interface IPost extends IAutor{
+export interface IPost{
    content: string,
    createdDate: string
     _v: number, 
     _id: string,
-    image_url: string
+    image_url: string,
+    autor: IData
 }
-export interface IPost2 extends IAutor{
+export interface IPost2{
     content: string,
-    createdDate: string
+    createdDate: string,
+    autor: IData,
     _v: number, 
     _id: string
     Ipost2: () => IPost[] | null
@@ -34,12 +33,15 @@ export interface IPerfil{
     age: number
     email: string,
     createdDate: string ,
+    avatar?: string,
     status: Number
 }
 export interface IData{
-    _id: string,
-    name: string,
-    age: number,
+    _id?: string,
+    name?: string,
+    age?: number,
     email: string,
-    createdDate: string,
+    habilitado?: boolean,
+    avatar?: string,
+    createdDate?: string,
 }

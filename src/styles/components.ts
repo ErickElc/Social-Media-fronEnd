@@ -110,12 +110,19 @@ export const PostSchema = styled.div`
 `
 
 export const HeaderComponent = styled.header`
+    /* position: fixed;
+    left: 0px;
+    min-width: 100%; */
+    top:0px;
     color: white;
     display: flex;
     padding: 10px;
     justify-content: space-between;
     background-color: #5800FF;
     align-items: center;
+    @media (max-width: 500px){
+        flex-flow: column wrap;
+    }
 `
 export const FormComponent = styled.form`
 
@@ -219,4 +226,18 @@ export const PostImage = styled.img`
     width: 300px;
     align-self: center;
     text-align: center;
+`
+export const AvatarPostImage = styled.img`
+    width: 40px;
+    height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    border-radius: 50%;
+`
+export const AvatarImage = styled.img`
+    width: 80px;
+    height: 90px;
+    max-height: 90px;
+    max-width: 80px;
+    border-radius: 50%;
 `

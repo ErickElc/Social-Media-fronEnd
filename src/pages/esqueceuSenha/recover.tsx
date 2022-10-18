@@ -15,7 +15,7 @@ export default function RecoverPassWord(){
     async function SubmitForm(e : any){
         e.preventDefault();
         try {
-            const recoverRequest = await http.put('api/users/recover-password', inputs);
+            const recoverRequest = await http.put('api/users/recover/password', inputs);
             if(recoverRequest){
                 alert('senha alterada com sucesso!');
                 navigate('/login');

@@ -59,7 +59,7 @@ export default function Login(){
                     />
                     <Button variant="contained" className="buttonLogin" type="submit">Login</Button>
                     <TextoLink className="textLink">
-                        <Link to='/esqueceuSenha'>
+                        <Link to='/recover'>
                             Esqueceu a senha?
                         </Link>  
                     </TextoLink>

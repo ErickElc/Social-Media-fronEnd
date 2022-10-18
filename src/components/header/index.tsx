@@ -7,10 +7,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { HeaderComponent, HeaderPerfil } from '../../styles/components';
 import { useModalHeaderContext } from "../../context/modalHeader.context";
 import { Link } from "react-router-dom";
+import { useDataContext } from "../../context/dataContext";
 
 export default function Header(){
-
-    const user = getUserLocalStorage();
+    const DataContext = useDataContext();
     const modalContext = useModalHeaderContext();
     function ToggleMode(){
         modalContext.openModal();
@@ -18,14 +18,14 @@ export default function Header(){
     };
     return(
         <HeaderComponent>
-            <div className="">
+            <div className="mb-2">
                 <h2 className='text-2xl font-bold mx-0'>
                     <Link to='/'>
                         WorkMedia
                     </Link>
                 </h2>
             </div>
-            <div>
+            <div className="mb-2">
                 <TextField 
                     id="outlined" 
                     className="bg-white rounded-lg"
@@ -40,9 +40,9 @@ export default function Header(){
                         }}
                 />
             </div>
-            <HeaderPerfil className='flex items-center mx-3 ' onClick={ToggleMode}>
-                <Avatar src="/broken-image.jpg" className='mr-3'/>
-                <p>{user?.name}</p>
+            <HeaderPerfil className='flex items-center mx-3 mb-2' onClick={ToggleMode}>
+                <Avatar src={DataContext.userData?.avatar} alt='broken-image.jpg' className='mr-3' style={{minHeight: 'auto',minWidth:'auto'}}/>
+                <p>{DataContext.userData?.name}</p>
             </HeaderPerfil>
         </HeaderComponent>
     )
