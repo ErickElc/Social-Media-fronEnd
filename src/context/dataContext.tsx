@@ -19,7 +19,7 @@ export const DataProvider = ({children}: {children: JSX.Element[] | JSX.Element}
         }).then((res)=>{
             setUserData(res.data);
         }).catch(err => console.log(err));
-    },[])
+    },[user?.token, user?.email])
     return <DataContext.Provider value={{userData, setUserData}}>{children}</DataContext.Provider>
 }
 export const useDataContext = () => {

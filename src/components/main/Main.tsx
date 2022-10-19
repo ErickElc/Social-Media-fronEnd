@@ -1,4 +1,4 @@
-import { AvatarImage, FeedComponent, FeedComponent2, InputComponent, MainComponent, ShareFeedComponnet } from "../../styles/components";
+import { AvatarImage, FeedComponent, InputComponent, MainComponent, ShareFeedComponnet } from "../../styles/components";
 import { useModalContext } from "../../context/modal.context";
 import { useDataContext } from "../../context/dataContext";
 import ModalPost from "../modal/modalPosts";
@@ -14,8 +14,10 @@ export default function Main(){
     return(
        <MainComponent>
             <FeedComponent className="mt-4">
-                <AvatarImage src={dataContext.userData?.avatar} alt="/broken-image.jpg" className=""/>
-                <p>{dataContext.userData?.name}</p>
+                {(dataContext.userData?.avatar) ? <AvatarImage src={dataContext.userData?.avatar} alt="/broken-image.jpg" className=""/>
+                : <Avatar src="/broken-image.jpg" className="mr-3"/>
+                }
+                <p className="text-white">{dataContext.userData?.name}</p>
             </FeedComponent>
             <ShareFeedComponnet className="mb-4">
                 <Avatar src={dataContext.userData?.avatar} alt="/broken-image.jpg" className="mr-3"/>

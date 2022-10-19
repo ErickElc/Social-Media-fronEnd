@@ -10,9 +10,7 @@ export const DivBody = styled.div`
 
 `
 export const MainComponent = styled.main`
-    background: rgb(141,5,240);
-background: linear-gradient(90deg, rgba(141,5,240,1) 0%, rgba(79,0,176,1) 35%, rgba(103,0,119,1) 100%);
-    /* background-color: #5F6F94; */
+    background: white;
     display: flex;
     justify-content: space-evenly;
     flex-flow: column;
@@ -86,7 +84,8 @@ export const FeedComponent2 = styled.div`
     }
 `
 export const FeedComponent = styled.div`
-    background-color: whitesmoke;
+    background: rgb(141,5,240);
+    background: linear-gradient(90deg, rgba(141,5,240,1) 0%, rgba(79,0,176,1) 35%, rgba(103,0,119,1) 100%);
     padding: 50px;
     border-radius: 10px;
     display: flex;
@@ -107,7 +106,7 @@ export const PostSchema = styled.div`
 background-color: whitesmoke;
     -moz-box-shadow: 0px 1px 5px 0px #676767;
     -webkit-box-shadow: 0px 1px 5px 0px #676767;
-    box-shadow: 0px 1px 5px 0px #676767;
+    box-shadow: 0px 2px 6px 1px #676767;
     padding: 50px;
     display: flex;
     flex-flow: wrap column;
@@ -123,15 +122,12 @@ background-color: whitesmoke;
 `
 
 export const HeaderComponent = styled.header`
-    /* position: fixed;
-    left: 0px;
-    min-width: 100%; */
     top:0px;
     color: white;
     display: flex;
     padding: 10px;
     justify-content: space-between;
-    background-color: #5800FF;
+    background-color: white;
     align-items: center;
     @media (max-width: 500px){
         flex-flow: column wrap;
@@ -212,6 +208,9 @@ export const HeaderPerfil = styled.div`
     display: flex;
     margin: 3px;
     align-items: center;
+    background-color: #5800FF;
+    padding: 10px;
+    color: white;
     &:hover{
         cursor: pointer;
         user-select:none;
@@ -264,4 +263,12 @@ export const AvatarImage = styled.img`
     max-height: 100px;
     max-width: 100px;
     border-radius: 50%;
+`
+export const TextColor = styled.h2`
+    background-image: linear-gradient(90deg, rgba(141,5,240,1) 0%, rgba(79,0,176,1) 35%, rgba(103,0,119,1) 100%);
+    font-weight: bold;
+    font-size:  24px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
 `

@@ -1,13 +1,12 @@
 import "./header.scss";
+import { Link } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
 import { SearchOutlined } from '@mui/icons-material';
-import { getUserLocalStorage } from "../../auth/util";
 import InputAdornment from '@mui/material/InputAdornment';
-import { HeaderComponent, HeaderPerfil } from '../../styles/components';
-import { useModalHeaderContext } from "../../context/modalHeader.context";
-import { Link } from "react-router-dom";
 import { useDataContext } from "../../context/dataContext";
+import { HeaderComponent, HeaderPerfil, TextColor } from '../../styles/components';
+import { useModalHeaderContext } from "../../context/modalHeader.context";
 
 export default function Header(){
     const DataContext = useDataContext();
@@ -19,11 +18,9 @@ export default function Header(){
     return(
         <HeaderComponent>
             <div className="mb-2">
-                <h2 className='text-2xl font-bold mx-0'>
-                    <Link to='/'>
-                        WorkMedia
-                    </Link>
-                </h2>
+                <TextColor>
+                    WorkMedia
+                </TextColor>
             </div>
             <div className="mb-2">
                 <TextField 
