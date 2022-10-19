@@ -18,7 +18,10 @@ export default function Login(){
         e.preventDefault();
         try {
             const loginRequest = await auth.authenticate(inputs.email, inputs.password);
-            if(loginRequest === 202)return navigate('/');
+            if(loginRequest === 202){
+                navigate('/');
+                return window.location.reload();
+            }
             else return setRequest("email ou senha está incorreta!");
 
         } catch (error) {

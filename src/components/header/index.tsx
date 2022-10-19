@@ -19,7 +19,9 @@ export default function Header(){
         <HeaderComponent>
             <div className="mb-2">
                 <TextColor>
-                    WorkMedia
+                    <Link to='/'>
+                         WorkMedia
+                    </Link>
                 </TextColor>
             </div>
             <div className="mb-2">

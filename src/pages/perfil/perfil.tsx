@@ -1,10 +1,8 @@
-import { AvatarImage, AvatarPostImage, DivContainer, PostImage, PostSchema, PubliContainer, SectionContainer } from '../../styles/components';
+import { AvatarImage, AvatarPostImage, DivContainer, FeedComponent, PostImage, PostSchema, PubliContainer, SectionContainer } from '../../styles/components';
 import { ProtectedLayoutNoLogged } from '../../components/protectedLayout/protectedLayout';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IPerfil, IPost} from '../../interface/Interface';
-import { getUserLocalStorage } from '../../auth/util';
 import { useEffect, useState } from 'react';
-import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
 import http from '../../api/api';
 import '../../styles/index.css'
@@ -36,17 +34,12 @@ export default function Perfil(){
         <ProtectedLayoutNoLogged>
             <SectionContainer> 
                 <div>
-                    <PubliContainer>
-                        <PostSchema className='mt-4'>
-                            <DivContainer className='flex-column'>
-                                <AvatarImage src={data?.avatar} alt="/broken-image.jpg" className=""/>
-                                <p className='mb-3'>{data?.name}</p>
-                                <Button variant="outlined"><Link to={route}>Editar Perfil</Link></Button>
-                            </DivContainer>
-                        </PostSchema>   
-                    </PubliContainer>
+                    <FeedComponent>
+                        <AvatarImage src={data?.avatar} alt="/broken-image.jpg" className=""/>
+                        <p className='mb-3 text-white'>{data?.name}</p>
+                        <Button variant="contained"><Link to={route}>Editar Perfil</Link></Button>
+                    </FeedComponent>
                 </div>
-        
                 <div>
                     <h2 className='font-bold text-center mb-4'>Ultimos posts: </h2>
                     <PubliContainer>
