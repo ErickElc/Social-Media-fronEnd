@@ -15,7 +15,7 @@ export default function Main(){
        <MainComponent>
             <FeedComponent className="mt-4">
                 {(dataContext.userData?.avatar) ? <AvatarImage src={dataContext.userData?.avatar} alt="/broken-image.jpg" className=""/>
-                : <Avatar src="/broken-image.jpg" className="mr-3"/>
+                : <Avatar src="/broken-image.jpg" className="mr-3" style={{height: '70px', width: '70px'}}/>
                 }
                 <p className="text-white">{dataContext.userData?.name}</p>
             </FeedComponent>

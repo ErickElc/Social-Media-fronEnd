@@ -258,8 +258,8 @@ export const AvatarPostImage = styled.img`
     border-radius: 50%;
 `
 export const AvatarImage = styled.img`
-    /* width: auto;
-    height: auto; */
+    width: 70px;
+    height: 70px;
     max-height: 100px;
     max-width: 100px;
     border-radius: 50%;

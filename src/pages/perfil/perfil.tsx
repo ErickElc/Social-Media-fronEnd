@@ -1,9 +1,9 @@
 import { AvatarImage, AvatarPostImage, DivContainer, FeedComponent, PostImage, PostSchema, PubliContainer, SectionContainer } from '../../styles/components';
-import { ProtectedLayoutNoLogged } from '../../components/protectedLayout/protectedLayout';
+import { PrivateRoute } from '../../components/protectedLayout/protectedLayout';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IPerfil, IPost} from '../../interface/Interface';
 import { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import http from '../../api/api';
 import '../../styles/index.css'
 export default function Perfil(){
@@ -31,11 +31,13 @@ export default function Perfil(){
         })
     },[])
     return(
-        <ProtectedLayoutNoLogged>
+        <PrivateRoute>
             <SectionContainer> 
                 <div>
                     <FeedComponent>
-                        <AvatarImage src={data?.avatar} alt="/broken-image.jpg" className=""/>
+                        {(data?.avatar) ? <AvatarImage src={data?.avatar} alt="/broken-image.jpg" className=""/>
+                        : <Avatar src="/broken-image.jpg" className="mr-3" style={{height: '70px', width: '70px'}}/>
+                        }
                         <p className='mb-3 text-white'>{data?.name}</p>
                         <Button variant="contained"><Link to={route}>Editar Perfil</Link></Button>
                     </FeedComponent>
@@ -60,7 +62,7 @@ export default function Perfil(){
                     </PubliContainer>
                 </div>
             </SectionContainer>
-        </ProtectedLayoutNoLogged>
+        </PrivateRoute>
 
     )
 

@@ -1,33 +1,35 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Route, useNavigate, useParams, Navigate } from "react-router-dom";
 import { getUserLocalStorage } from "../../auth/util";
 import {useState , useEffect} from 'react';
 import http from "../../api/api";
 interface IProtected{
     children: JSX.Element;
 }
-export function ProtectedLayoutNoLogged({children} : IProtected) {
-    const User = getUserLocalStorage();
-    const navigate = useNavigate();
-    const [response, setResponse] = useState<Number | null>(null);
-    useEffect(()=>{
+export const PrivateRoute = ({children}: IProtected) =>{
+    const User = getUserLocalStorage()
+    const navigate = useNavigate()
+    const [logged, setLogged] = useState(false)
+    useEffect(() =>{
         http.post('auth/free',{
             token: User?.token,
-        }).then(res => setResponse(res.status)).catch((err) => {
-            setResponse(err.response.status)
+            email: User?.email
+        }).then(res => {
+            if(res.status === 202){
+                setLogged(true)
+            }
+            else{
+                navigate('/login')
+            }
+            
+        }).catch(err => {
+            setLogged(false);
+            navigate('/login')
         })
-    },[User, navigate]);
-    if(!User?.token) {
-        navigate('/login');
-    }
-    const VerifyLoggin = (status: Number | null) => {
-        if(status === 202){
-            return children;
-        }else{
-            return <h1 className='font-bold text-2xl mt-10'>ERROR: 404 Essa página não existe</h1>
-        }  
-    } 
-    return VerifyLoggin(response);
+    },[User?.token, User?.email])
+
+    return (logged ? (<>{children}</>) : (<></>));
 }
+
 export function ProtectedLayoutLogged({children} : {children: JSX.Element}){
     const User = getUserLocalStorage();
     const navigate = useNavigate();
@@ -52,7 +54,6 @@ export function ProtectedLayoutLogged({children} : {children: JSX.Element}){
 }
 export function ProtectedLayoutAdmin({children}: {children:JSX.Element}){
     const User = getUserLocalStorage();
-    const navigate = useNavigate();
     const [response, setResponse] = useState<Number | null>(null);
     useEffect(()=>{
         http.post('auth/admin',{
@@ -61,7 +62,7 @@ export function ProtectedLayoutAdmin({children}: {children:JSX.Element}){
         }).then(res => setResponse(res.status)).catch((err) => {
             setResponse(err.response.status)
         })
-    },[User, navigate])
+    },[User?.token, User?.email])
     const VerifyLoggin = (status: Number | null) => {
         if(status === 200){
             return children;
@@ -82,7 +83,7 @@ export function ProtectedLayoutPrivatePageUser({children} : {children: JSX.Eleme
         }).then(res => setResponse(res.status)).catch((err) => {
             setResponse(err.response.status)
         })
-    },[User,id])
+    },[User?.token, User?.email, id])
     const VerifyLoggin = (status: Number | null) => {
         if(status === 202){
             return children;

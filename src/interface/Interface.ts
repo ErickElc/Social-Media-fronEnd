@@ -19,6 +19,13 @@ export interface IPost{
     image_url: string,
     autor: IData
 }
+export interface IComments{ 
+    _id: string
+    content: string,
+    autorId: IData,
+    postId: IPost,
+    createdDate: string
+}
 export interface IPost2{
     content: string,
     createdDate: string,
