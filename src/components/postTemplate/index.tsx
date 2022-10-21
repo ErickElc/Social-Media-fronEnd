@@ -1,7 +1,7 @@
 import { AvatarPostImage, PostImage, PostSchema, PubliContainer } from "../../styles/components";
 import { IComments, IPost } from "../../interface/Interface";
 import { getUserLocalStorage } from "../../auth/util";
-import { Button, TextField } from "@mui/material";
+import { Avatar, Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import http from "../../api/api";
@@ -53,7 +53,9 @@ export default function PostTemplate(){
                         <div className="flex-row mb-1">
                             <Link to={'/perfil/' + item?.autor?._id}>
                                 <div className="flex">
-                                    <AvatarPostImage src={item?.autor?.avatar} alt="/broken-image.jpg" className="mr-3"/>
+                                    {(item?.autor?.avatar) ?<AvatarPostImage src={item?.autor?.avatar} alt="/broken-image.jpg" className="mr-3"/>
+                                    : <Avatar src="/broken-image.jpg" className="mr-3" style={{height: '40px', width: '40px'}}/>
+                                    }
                                     <p className="flex items-center">{item?.autor?.name}</p>
                                 </div>
                             </Link>

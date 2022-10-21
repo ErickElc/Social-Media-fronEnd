@@ -52,3 +52,6 @@ export interface IData{
     avatar?: string,
     createdDate?: string,
 }
+export interface IPerfis{
+    users: Array<IData>
+}
