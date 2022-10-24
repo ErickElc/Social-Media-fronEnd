@@ -6,10 +6,12 @@ import { useEffect, useState } from 'react';
 import { Avatar, Button } from '@mui/material';
 import http from '../../api/api';
 import '../../styles/index.css'
+import { getUserLocalStorage } from '../../auth/util';
 export default function Perfil(){
     const {id} = useParams();
     const route = `/conta/${id}`;
     const [data, setData] = useState<IPerfil>();
+    const user = getUserLocalStorage();
     const [postsPerfil, setPostsPerfil] = useState([]);
     const navigate = useNavigate();
     useEffect(()=>{
@@ -39,7 +41,9 @@ export default function Perfil(){
                         : <Avatar src="/broken-image.jpg" className="mr-3" style={{height: '70px', width: '70px'}}/>
                         }
                         <p className='mb-3 text-white'>{data?.name}</p>
-                        <Button variant="contained"><Link to={route}>Editar Perfil</Link></Button>
+                        {
+                            user?._id === data?._id ? <Button variant="contained"><Link to={route}>Editar Perfil</Link></Button> : ''
+                        }
                     </FeedComponent>
                 </div>
                 <div>
