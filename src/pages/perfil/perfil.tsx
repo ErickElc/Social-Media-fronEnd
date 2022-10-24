@@ -2,11 +2,11 @@ import { AvatarImage, AvatarPostImage, DivContainer, FeedComponent, PostImage, P
 import { PrivateRoute } from '../../components/protectedLayout/protectedLayout';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IPerfil, IPost} from '../../interface/Interface';
-import { useEffect, useState } from 'react';
+import { getUserLocalStorage } from '../../auth/util';
 import { Avatar, Button } from '@mui/material';
+import { useEffect, useState } from 'react';
 import http from '../../api/api';
 import '../../styles/index.css'
-import { getUserLocalStorage } from '../../auth/util';
 export default function Perfil(){
     const {id} = useParams();
     const route = `/conta/${id}`;
