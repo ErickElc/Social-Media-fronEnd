@@ -1,34 +1,35 @@
 import { HeaderComponent, HeaderPerfil, TextColor } from '../../styles/components';
 import { useModalHeaderContext } from "../../context/modalHeader.context";
-import { IData, IPerfis } from "../../interface/Interface";
 import { useDataContext } from "../../context/dataContext";
-import InputAdornment from '@mui/material/InputAdornment';
-import { SearchOutlined } from '@mui/icons-material';
 import TextField from '@mui/material/TextField';
 import { Autocomplete } from "@mui/material";
 import { useEffect, useState } from "react";
 import Avatar from '@mui/material/Avatar';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import http from "../../api/api";
 import "./header.scss";
-
 interface ILabel{
-    label: string
+    label: string,
+    id: string
 }
-
 export default function Header(){
     const [users, setUsers] = useState<any>([]);
+    const [input, setInputs] = useState('')
+    const navigate = useNavigate()
     const DataContext = useDataContext();
     const modalContext = useModalHeaderContext();
     function ToggleMode(){
         modalContext.openModal();
-    };
+    }
     const perfis = () =>{ 
         let label: Array<ILabel | []> = [];
         for(let i in users){
-            label.push({label: users[i]?.name})
+            label.push({label: users[i]?.name, id: users[i]?._id})
         }
         return label;
+    }
+    const BuscarUser = () =>{
+        navigate(`/pesquisa/${input}`)
     }
     useEffect(()=>{
         http.get('api/users/all')
@@ -48,11 +49,22 @@ export default function Header(){
             </div>
             <div className="mb-2">
             <Autocomplete
+                onChange={(e: any) => setInputs((e.target.value))}
                 disablePortal
+                freeSolo
                 id="combo-box-demo"
                 options={perfis()}
                 sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Pesquise por perfis" />}
+                renderInput={(params) => 
+                    <form onSubmit={BuscarUser}>
+                        <TextField 
+                            {...params} 
+                            label="Pesquise por perfis" 
+                            onChange={(e: any) => setInputs((e.target.value))}
+                            value={input}
+                        />
+                    </form>
+                }
             />
             </div>
             <HeaderPerfil className='flex items-center mx-3 mb-2' onClick={ToggleMode}>
