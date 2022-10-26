@@ -54,7 +54,8 @@ export default function Header(){
                 freeSolo
                 id="combo-box-demo"
                 options={perfis()}
-                sx={{ width: 300 }}
+                sx={{ width: 250 }}
+                fullWidth
                 renderInput={(params) => 
                     <form onSubmit={BuscarUser}>
                         <TextField 

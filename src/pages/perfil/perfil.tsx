@@ -47,13 +47,13 @@ export default function Perfil(){
                     <PubliContainer>
                         {postsPerfil.map((item: IPost | null) => (
                             <PostSchema key={item?._id}>
-                                <div className="flex flex-row mb-10">
+                                <div className="flex-row  justify-end content-end mb-1">
                                     {(item?.autor?.avatar) ? <AvatarPostImage src={item?.autor?.avatar} alt="/broken-image.jpg" className="mr-3"/>
                                     : <Avatar src="/broken-image.jpg" className="mr-3" style={{height: '40px', width: '40px'}}/>
                                     }
                                     <p className="flex items-center">{item?.autor.name}</p>
                                 </div>
-                                <div>
+                                <div className="mb-3">
                                     <p>{item?.content}</p>
                                 </div>
                                 <div>

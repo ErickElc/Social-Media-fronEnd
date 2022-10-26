@@ -40,8 +40,11 @@ export const ShareFeedComponnet = styled.div`
     border-radius: 10px;
     align-items: center;
     width: 580px;
-    @media (max-width: 420px){
-        width: 240px;
+    @media (max-width: 600px){
+        width: 340px;
+    }
+    @media (max-width: 400px){
+        width: 270px;
     }
 `
 export const InputComponent = styled.div`
@@ -98,12 +101,15 @@ export const FeedComponent = styled.div`
     justify-self: center;
     margin-bottom: 10px;
     width: 580px;
-    @media (max-width: 420px) {
-        width: 240px
+    @media (max-width: 600px) {
+        width: 340px
+    }
+    @media (max-width: 380px) {
+        width: 270px
     }
 `
 export const PostSchema = styled.div`
-background-color: whitesmoke;
+    background-color: whitesmoke;
     -moz-box-shadow: 0px 1px 5px 0px #676767;
     -webkit-box-shadow: 0px 1px 5px 0px #676767;
     box-shadow: 0px 2px 6px 1px #676767;
@@ -115,9 +121,17 @@ background-color: whitesmoke;
     border-radius: 10px;
     margin-bottom: 30px;
     width: 580px;
+    max-width: 580px;
     min-height: 40vh;
-    @media (max-width: 420px){
-        width: 240px;
+    @media (max-width: 600px) {
+        width: 340px;
+        box-shadow: 0px 0px 0px 0px #676767;
+        -moz-box-shadow: 0px 0px 0px 0px #676767;
+        -webkit-box-shadow: 0px 0px 0px 0px #676767;
+        padding: 0px;
+    }
+    @media (max-width: 380px){
+        width: 270px;
     }
 `
 
@@ -129,7 +143,7 @@ export const HeaderComponent = styled.header`
     justify-content: space-between;
     background-color: white;
     align-items: center;
-    @media (max-width: 500px){
+    @media (max-width:600px){
         flex-flow: column wrap;
     }
 `
@@ -198,7 +212,7 @@ export const ModalHeader = styled.div`
         width:50%;
         left: 51%;
     }
-    @media (max-width: 400px) {
+    @media (max-width: 600px) {
         width:100%;
         left: 0%;
     }
@@ -244,11 +258,17 @@ export const DivContainer = styled.div`
 `
 export const PostImage = styled.img`
     max-height: 300px;
-    max-width: 500px;
+    max-width: 474px;
     height: auto;
     width: auto;
     align-self: center;
     text-align: center;
+    @media (max-width: 600px) {
+        max-width: 340px;
+    }
+    @media (max-width: 400px) {
+        max-width: 270px;
+    }
 `
 export const AvatarPostImage = styled.img`
     width: 40px;

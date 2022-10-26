@@ -41,16 +41,16 @@ export default function PostTemplate(){
             alert('Não foi possível fazer esse comentário')
         }
     }
-    // {/* <div className="flex-column items-end content-end my-3">
-    //     {(item?.autor?._id === user._id) ? <Button variant='outlined' >Editar</Button> : ''}
-    //     {(item?.autor?._id === user._id) ? <Button variant='contained'>Deletar</Button> : ''}
-    // </div> */}
     return(
         <div>
             <PubliContainer>
                 {postData?.map((item: IPost, index) => (
                     <PostSchema key={item?._id} onChange={() => {setId(index)}}>
-                        <div className="flex-row mb-1">
+                        <div className="flex-row  justify-end content-end mb-1">
+                            <div className="flex-row items-end content-end justify-end my-3">
+                                {/* {(item?.autor?._id === user._id) ? <Button variant='outlined' >Editar</Button> : ''} */}
+                                {(item?.autor?._id === User._id) ? <Button variant='contained'>Deletar</Button> : ''}
+                            </div>
                             <Link to={'/perfil/' + item?.autor?._id}>
                                 <div className="flex">
                                     {(item?.autor?.avatar) ?<AvatarPostImage src={item?.autor?.avatar} alt="/broken-image.jpg" className="mr-3"/>
