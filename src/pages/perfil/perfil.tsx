@@ -2,14 +2,16 @@ import { AvatarImage, AvatarPostImage, DivContainer, FeedComponent, PostImage, P
 import { PrivateRoute } from '../../components/protectedLayout/protectedLayout';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IPerfil, IPost} from '../../interface/Interface';
-import { useEffect, useState } from 'react';
+import { getUserLocalStorage } from '../../auth/util';
 import { Avatar, Button } from '@mui/material';
+import { useEffect, useState } from 'react';
 import http from '../../api/api';
 import '../../styles/index.css'
 export default function Perfil(){
     const {id} = useParams();
     const route = `/conta/${id}`;
     const [data, setData] = useState<IPerfil>();
+    const user = getUserLocalStorage();
     const [postsPerfil, setPostsPerfil] = useState([]);
     const navigate = useNavigate();
     useEffect(()=>{
@@ -39,7 +41,9 @@ export default function Perfil(){
                         : <Avatar src="/broken-image.jpg" className="mr-3" style={{height: '70px', width: '70px'}}/>
                         }
                         <p className='mb-3 text-white'>{data?.name}</p>
-                        <Button variant="contained"><Link to={route}>Editar Perfil</Link></Button>
+                        {
+                            user?._id === data?._id ? <Button variant="contained"><Link to={route}>Editar Perfil</Link></Button> : ''
+                        }
                     </FeedComponent>
                 </div>
                 <div>
