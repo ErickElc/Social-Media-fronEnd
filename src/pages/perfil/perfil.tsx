@@ -42,7 +42,7 @@ export default function Perfil(){
                         }
                         <p className='mb-3 text-white'>{data?.name}</p>
                         {
-                            user?._id === data?._id ? <Button variant="contained"><Link to={route}>Editar Perfil</Link></Button> : ''
+                            user?._id === data?._id ? <Link to={route}><Button variant="contained">Editar Perfil</Button></Link> : ''
                         }
                     </FeedComponent>
                 </div>
