@@ -26,7 +26,7 @@ export const MainComponent = styled.main`
 
 export const PubliContainer = styled.div`
     display: flex;
-    flex-flow: column;
+    flex-flow: column-reverse;
     justify-content: center;
     align-items: center;
 `
@@ -291,4 +291,11 @@ export const TextColor = styled.h2`
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
+`
+export const ContainerDivAutor = styled.div`
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
 `
