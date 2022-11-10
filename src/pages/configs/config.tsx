@@ -16,6 +16,7 @@ export default function ConfigPage(){
         name: '',
         age: '',
         email: '',
+        cpf: ''
     });
     const VerifyImages = (e : React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.files?.length){
@@ -30,7 +31,8 @@ export default function ConfigPage(){
             setInputs({
                 name: res.data.name,
                 age: res.data.age,
-                email: res.data.email
+                email: res.data.email,
+                cpf: res.data.cpf
             })
             setSelect(res.data.habilitado);
             setUserData(res.data);
@@ -69,7 +71,8 @@ export default function ConfigPage(){
             const response = await http.put('api/users/update/' + id, {
                 name: inputs.name,
                 age: inputs.age,
-                email: inputs.email,
+                email: inputs?.email,
+                cpf: inputs.cpf,
                 token: user?.token,
                 habilitado: select
             })
@@ -160,6 +163,31 @@ export default function ConfigPage(){
                                 required
                                 value={inputs.email}
                                 onChange={(e) => setInputs(prev => ({...prev, email: e.target.value}))}
+                            />
+                        )
+                    }
+                </div>
+                <div className='flex justify-between text-xl mb-2'>
+                    <h3>CPF:</h3>
+                    {
+                        (open === false) ? (
+                            <div>
+                                <input 
+                                    className='px-4 pr-6'
+                                    type='text'
+                                    disabled
+                                    value={inputs.cpf}
+                                />
+                            </div>
+                        ) : (
+                            <input 
+                                className='border-solid'
+                                type='text'
+                                required
+                                value={inputs.cpf}
+                                minLength={11}
+                                maxLength={11}
+                                onChange={(e) => setInputs(prev => ({...prev, cpf: e.target.value}))}
                             />
                         )
                     }

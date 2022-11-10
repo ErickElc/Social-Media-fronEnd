@@ -15,7 +15,8 @@ export default function Cadastro(){
         name: '',
         age: '',
         email: '',
-        password: ''
+        password: '',
+        cpf: ''
     })
     
     const [request, setRequest] = useState("");
@@ -39,6 +40,7 @@ export default function Cadastro(){
                 name: inputs.name,
                 age: inputs.age,
                 email: inputs.email,
+                cpf: inputs.cpf,
                 password: inputs.password
             })
             registerWorked(registerRequest);
@@ -89,6 +91,17 @@ export default function Cadastro(){
                         variant="outlined"
                         type='email'
                         onChange={e => setInputs(prev => ({...prev, email: e.target.value}))}
+                    />
+                    <TextField 
+                        className="Inputs"
+                        id="outlined-basic"
+                        required
+                        value={inputs.cpf}
+                        label="CPF (APENAS NÚMEROS)" 
+                        inputProps={{ minLength: 11 ,maxLength: 11 }}
+                        variant="outlined"
+                        type='text'
+                        onChange={e => setInputs(prev => ({...prev, cpf: e.target.value}))}
                     />
                     <TextField 
                         className="Inputs"

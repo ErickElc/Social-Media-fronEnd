@@ -8,6 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import { Link, useNavigate } from "react-router-dom";
 import http from "../../api/api";
 import "./header.scss";
+import { idText } from 'typescript';
 interface ILabel{
     label: string,
     id: string
@@ -28,8 +29,9 @@ export default function Header(){
         }
         return label;
     }
-    const BuscarUser = () =>{
-        navigate(`/pesquisa/${input}`)
+    const BuscarUser = (userID :any) =>{
+        navigate(`/perfil/${userID}`)
+        window.location.reload();
     }
     useEffect(()=>{
         http.get('api/users/all')
@@ -49,12 +51,14 @@ export default function Header(){
             </div>
             <div className="mb-2">
             <Autocomplete
-                onChange={(e: any) => setInputs((e.target.value))}
+                onChange={(e: any, option: any) => {
+                    BuscarUser(option.id)
+                }}
                 disablePortal
-                freeSolo
                 id="combo-box-demo"
                 options={perfis()}
-                sx={{ width: 300 }}
+                sx={{ width: 250 }}
+                fullWidth
                 renderInput={(params) => 
                     <form onSubmit={BuscarUser}>
                         <TextField 

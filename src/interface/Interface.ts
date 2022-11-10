@@ -47,6 +47,7 @@ export interface IData{
     _id?: string,
     name?: string,
     age?: number,
+    cpf?: string,
     email: string,
     habilitado?: boolean,
     avatar?: string,

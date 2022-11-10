@@ -7,7 +7,7 @@ import { DivBody, DivBord, TextLogin, TextoLink } from "../../styles/components"
 export default function RecoverPassWord(){
     const [inputs, setInputs] = useState({
         email: '',
-        age: '',
+        cpf: '',
         password: '',
     });
     const [request, setRequest] = useState("");
@@ -48,12 +48,13 @@ export default function RecoverPassWord(){
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
-                        label="Digite sua idade"
+                        label="Digite seu cpf (Apenas Números)"
                         variant="outlined"
-                        value={inputs.age}
+                        inputProps={{ minLength: 11 ,maxLength: 11 }}
+                        value={inputs.cpf}  
                         required
-                        type='number'
-                        onChange={(e) => setInputs(prev => ({...prev, age: e.target.value}))}
+                        type='text'
+                        onChange={(e) => setInputs(prev => ({...prev, cpf: e.target.value}))}
                     />
                     <TextField 
                         className="Inputs"
