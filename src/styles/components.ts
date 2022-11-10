@@ -278,10 +278,10 @@ export const AvatarPostImage = styled.img`
     border-radius: 50%;
 `
 export const AvatarImage = styled.img`
-    width: auto;
-    height: auto;
-    max-height: 120px;
-    max-width: 110px;
+    width: 80px;
+    height: 80px;
+    max-height: 80px;
+    max-width: 80px;
     border-radius: 50%;
 `
 export const TextColor = styled.h2`
