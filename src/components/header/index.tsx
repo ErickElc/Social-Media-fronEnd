@@ -60,14 +60,12 @@ export default function Header(){
                 sx={{ width: 250 }}
                 fullWidth
                 renderInput={(params) => 
-                    <form onSubmit={BuscarUser}>
                         <TextField 
                             {...params} 
                             label="Pesquise por perfis" 
                             onChange={(e: any) => setInputs((e.target.value))}
                             value={input}
                         />
-                    </form>
                 }
             />
             </div>
