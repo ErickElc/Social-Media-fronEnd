@@ -8,6 +8,7 @@ import Modal from '@mui/material/Modal';
 import http from '../../../api/api';
 import {useState} from 'react'
 import './style.scss';
+import { useTheme } from 'styled-components';
 export default function ModalPost(){
     const modalContext = useModalContext();
     const [inputs, setInputs] = useState({
@@ -26,6 +27,9 @@ export default function ModalPost(){
     }
     async function SubmitForm(e: any){
         e.preventDefault();
+        if(user?.habilitado === false){
+            return alert("Você não pode fazer um post")
+        }
         const formData = new FormData;
         formData.append('content', inputs.content);
         formData.append('autor', user._id)
