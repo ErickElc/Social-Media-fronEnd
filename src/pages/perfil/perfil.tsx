@@ -32,6 +32,21 @@ export default function Perfil(){
             console.log(err)
         })
     },[])
+    const deletePost = async (id: String | undefined) => {
+        try {
+            const response = await http.post(`api/posts/delete/${id}`,{
+              token: user?.token,
+              email: user?.email
+            })
+            if(response.status){
+                alert('Post Excluido com sucesso');
+                window.location.reload();
+            }
+          
+        } catch (error) {
+          console.log(error);
+        }
+    }
     return(
         <PrivateRoute>
             <SectionContainer> 
@@ -51,6 +66,8 @@ export default function Perfil(){
                     <PubliContainer>
                         {postsPerfil.map((item: IPost | null) => (
                             <PostSchema key={item?._id}>
+                                {(item?.autor?._id === user._id) ? 
+                                <Button  style={{width: 100}}variant='contained' onClick={() => deletePost(item?._id)} > Deletar</Button> : ''}
                                 <ContainerDivAutor>
                                     {(item?.autor?.avatar) 
                                     ? <AvatarPostImage src={item?.autor?.avatar} alt="/broken-image.jpg" className=""/>

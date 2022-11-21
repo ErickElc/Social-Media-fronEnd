@@ -1,21 +1,24 @@
 import { FormComponent, StyleForm } from '../../../styles/components';
 import { useModalContext } from '../../../context/modal.context';
 import { getUserLocalStorage } from '../../../auth/util';
+import { IData } from '../../../interface/Interface';
 import { useAuth } from '../../../auth/useAuth';
 import TextField from '@mui/material/TextField';
 import { Box, Button } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import http from '../../../api/api';
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import './style.scss';
+import { useTheme } from 'styled-components';
 export default function ModalPost(){
     const modalContext = useModalContext();
     const [inputs, setInputs] = useState({
         content: ''
     });
+    const [userData, setUserData] = useState<IData | undefined>();
     const [files, setFiles] = useState<File | null>(null)
     const {token} = useAuth();
-    const user = getUserLocalStorage()
+    const user = getUserLocalStorage();
     const VerifyImages = (e : React.ChangeEvent<HTMLInputElement>) => {
         if(e.target.files?.length){
             setFiles(e.target.files[0]);
@@ -24,8 +27,16 @@ export default function ModalPost(){
             setFiles(null)
         }
     }
+    useEffect(() => {
+        http.get('api/users/' + user._id).then((res)=>{
+            setUserData(res.data);
+        }).catch(err => console.log(err));
+    },[])
     async function SubmitForm(e: any){
         e.preventDefault();
+        if(userData?.habilitado === false){
+            return alert("Você não pode fazer um post, Habilite sua conta novamente!")
+        }
         const formData = new FormData;
         formData.append('content', inputs.content);
         formData.append('autor', user._id)

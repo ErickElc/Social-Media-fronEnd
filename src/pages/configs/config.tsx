@@ -1,13 +1,15 @@
 import { IData } from '../../interface/Interface';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import http from '../../api/api';
 import { Button } from '@mui/material';
 import { getUserLocalStorage} from '../../auth/util';
+import { useAuth } from '../../auth/useAuth';
 export default function ConfigPage(){
     const {id} = useParams();
     const user = getUserLocalStorage()
-
+    const navigate =  useNavigate()
+    const auth = useAuth();
     const [open, setOpen] = useState(false);
     const [userData, setUserData] = useState<IData>();
     const [files, setFiles] = useState<File | null>(null)
@@ -66,6 +68,21 @@ export default function ConfigPage(){
         })
         .catch(err =>  console.log(err));
     }
+    async function DeleteUser(){
+        try {
+            const request = await http.post('api/users/remove/' + id,{
+                token: user?.token,
+                email: userData?.email
+            })
+            if(request.status === 200){
+                auth.logout();
+                alert("Usuário Deletado")
+                navigate("/login")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     async function SubmitForm() {
         try {
             const response = await http.put('api/users/update/' + id, {
@@ -91,6 +108,7 @@ export default function ConfigPage(){
         <div className='flex-column items-center justify-center m-8'>
             <form className='flex-column'> 
                 <div className='text-end m-3 mr-0'>
+                    <Button variant='contained' type='button' onClick={DeleteUser} style={{marginRight: 10}}>Deletar User</Button>
                     {
                         (open === false) ? (
                             <Button variant='outlined' type='button' onClick={HandleButton}>Editar</Button>
