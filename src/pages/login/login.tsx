@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useAuth } from "../../auth/useAuth";
 import './login.scss';
-
+import WorkMediaLogo from '../../styles/WorkMediaLogo.png';
 export default function Login(){
     const navigate = useNavigate();
     const auth = useAuth();
@@ -34,9 +34,7 @@ export default function Login(){
         <div className="div-bg">
             <DivBody className="DivBody">
                 <DivBord className="ContainerBord" onSubmit={SubmitForm}>
-                    <TextLogin className="Title">
-                        Login
-                    </TextLogin>
+                    <img src={WorkMediaLogo}  alt="Work Media Logo" style={{width: 200, height: 120}}/>
                     <TextLogin className="requestTest">
                         {request}
                     </TextLogin>

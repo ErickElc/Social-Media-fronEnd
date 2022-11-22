@@ -3,9 +3,14 @@ import styled from 'styled-components';
 export const DivBody = styled.div`
     display:flex;
     height: 100vh;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    /* overflow-y: hidden; */
+    padding: 30px;
+    @media (max-height: 600px) {
+        justify-content: flex-end;
+        padding-top: 200px;
+    }
     justify-content: center;
+    overflow-x: hidden;
     align-items: center;
 
 `
@@ -177,7 +182,7 @@ export const DivBord = styled.form`
     flex-flow: column;
     align-items: center;
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px;
     
 
 `

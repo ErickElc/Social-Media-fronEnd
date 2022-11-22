@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import http from "../../api/api";
-
+import WorkMediaLogo from '../../styles/WorkMediaLogo.png';
 
 
 export default function Cadastro(){
@@ -53,12 +53,11 @@ export default function Cadastro(){
     };
 
     return(
-        <div className="div-bg">
+        <div className="div-bg overflow-y-scroll">
             <DivBody className="DivBody">
                 <DivBord className="ContainerBord" onSubmit={SubmitForm}>
-                    <TextLogin className="Title">
-                        Cadastro
-                    </TextLogin>
+                    <img src={WorkMediaLogo}  alt="Work Media Logo" style={{width: 200, height: 120}}/>
+                    <h2 className="text-2xl font-bold">Cadastro</h2>
                     <TextLogin className="requestTest">
                         {request}
                     </TextLogin>

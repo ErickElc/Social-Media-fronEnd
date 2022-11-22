@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import http from "../../api/api";
 import { DivBody, DivBord, TextLogin, TextoLink } from "../../styles/components";
-
+import WorkMediaLogo from '../../styles/WorkMediaLogo.png';
 export default function RecoverPassWord(){
     const [inputs, setInputs] = useState({
         email: '',
@@ -29,9 +29,8 @@ export default function RecoverPassWord(){
         <div className="div-bg">
             <DivBody className="DivBody">
                 <DivBord className="ContainerBord" onSubmit={SubmitForm}>
-                    <TextLogin className="Title">
-                       Recuperar Senha
-                    </TextLogin>
+                    <img src={WorkMediaLogo}  alt="Work Media Logo" style={{width: 200, height: 120}}/>
+                    <h2 className="text-2xl font-bold">Recuperar Senha</h2>
                     <TextLogin className="requestTest">
                         {request}
                     </TextLogin>
