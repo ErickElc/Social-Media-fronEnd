@@ -1,6 +1,8 @@
 import { AvatarImage, AvatarPostImage, ContainerDivAutor, DivContainer, FeedComponent, PostImage, PostSchema, PubliContainer, SectionContainer } from '../../styles/components';
 import { PrivateRoute } from '../../components/protectedLayout/protectedLayout';
+import { useModalContextEditar } from '../../context/modalEditar';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import ModalEditar from '../../components/modal/modalEditar';
 import { IPerfil, IPost} from '../../interface/Interface';
 import { getUserLocalStorage } from '../../auth/util';
 import { Avatar, Button } from '@mui/material';
@@ -8,6 +10,7 @@ import { useEffect, useState } from 'react';
 import http from '../../api/api';
 import '../../styles/index.css'
 export default function Perfil(){
+    const modalContext2 = useModalContextEditar();
     const {id} = useParams();
     const route = `/conta/${id}`;
     const [data, setData] = useState<IPerfil>();
@@ -47,6 +50,10 @@ export default function Perfil(){
           console.log(error);
         }
     }
+    const toogleMode = (id: string) => {
+        modalContext2?.setId(id)
+        modalContext2.openModal();
+    }
     return(
         <PrivateRoute>
             <SectionContainer> 
@@ -64,10 +71,12 @@ export default function Perfil(){
                 <div>
                     <h2 className='font-bold text-center mb-4'>Ultimos posts: </h2>
                     <PubliContainer>
-                        {postsPerfil.map((item: IPost | null) => (
+                        {postsPerfil.map((item: IPost ) => (
                             <PostSchema key={item?._id}>
                                 {(item?.autor?._id === user._id) ? 
-                                <Button  style={{width: 100}}variant='contained' onClick={() => deletePost(item?._id)} > Deletar</Button> : ''}
+                                <Button  style={{width: 100, margin: 10}}variant='contained' onClick={() => deletePost(item?._id)} > Deletar</Button> : ''}
+                                {(item?.autor?._id === user._id) ? 
+                                <Button variant='outlined' style={{width: 100, margin: 10}} onClick={() => toogleMode(item._id)} > Editar </Button> : ''}
                                 <ContainerDivAutor>
                                     {(item?.autor?.avatar) 
                                     ? <AvatarPostImage src={item?.autor?.avatar} alt="/broken-image.jpg" className=""/>
@@ -85,6 +94,7 @@ export default function Perfil(){
                         ))}
                     </PubliContainer>
                 </div>
+                <ModalEditar/>
             </SectionContainer>
         </PrivateRoute>
 

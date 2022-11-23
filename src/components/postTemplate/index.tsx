@@ -1,4 +1,5 @@
 import { AvatarPostImage, PostImage, PostSchema, PubliContainer } from "../../styles/components";
+import { useModalContextEditar } from "../../context/modalEditar";
 import { IComments, IPost } from "../../interface/Interface";
 import { Avatar, Button, TextField } from "@mui/material";
 import { getUserLocalStorage } from "../../auth/util";
@@ -7,7 +8,7 @@ import { Link } from "react-router-dom";
 import http from "../../api/api";
 
 export default function PostTemplate(){
-
+    const modalContext2 = useModalContextEditar();
     const User = getUserLocalStorage();
     const [id, setId] = useState<number>(0);
     const [postData, setPostData] = useState<Array<IPost> | []>([]);
@@ -34,6 +35,10 @@ export default function PostTemplate(){
       }
 
     }
+    const toogleMode = (id: string) => {
+        modalContext2?.setId(id)
+        modalContext2.openModal();
+    }
     return(
         <div>
             <PubliContainer>
@@ -43,6 +48,10 @@ export default function PostTemplate(){
                             <div className="flex-row items-end content-end justify-end my-3">
                                 {(item?.autor?._id === User._id) ? 
                                 <Button variant='contained' onClick={() => deletePost(item._id)} > Deletar</Button> : ''}
+                            </div>
+                            <div className="flex-row items-end content-end justify-end my-3">
+                                {(item?.autor?._id === User._id) ? 
+                                <Button variant='outlined' onClick={() => toogleMode(item._id)} > Editar </Button> : ''}
                             </div>
                             <Link to={'/perfil/' + item?.autor?._id}>
                                 <div className="flex">
