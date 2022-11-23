@@ -32,15 +32,6 @@ export default () => {
             setUserData(res.data);
         }).catch(err => console.log(err));
     },[])
-    useEffect(() => {
-        if(modalContext2.open === true){
-            http.get('api/posts/list/' + modalContext2.id)
-            .then(res => setInputs({
-                content: res.data[0].content
-            }))
-            .catch(err => console.log(err))
-        }
-    },[modalContext2.id, modalContext2.open])
     async function SubmitForm(e: any){
         e.preventDefault();
         if(userData?.habilitado === false){

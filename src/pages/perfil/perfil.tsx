@@ -71,7 +71,7 @@ export default function Perfil(){
                 <div>
                     <h2 className='font-bold text-center mb-4'>Ultimos posts: </h2>
                     <PubliContainer>
-                        {postsPerfil.map((item: IPost ) => (
+                        {postsPerfil.map((item: IPost) => (
                             <PostSchema key={item?._id}>
                                 {(item?.autor?._id === user._id) ? 
                                 <Button  style={{width: 100, margin: 10}}variant='contained' onClick={() => deletePost(item?._id)} > Deletar</Button> : ''}
