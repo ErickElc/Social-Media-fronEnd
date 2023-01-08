@@ -4,6 +4,7 @@ import { useDataContext } from "../../context/dataContext";
 import ModalPost from "../modal/modalPosts";
 import Avatar from '@mui/material/Avatar';
 import PostTemplate from "../postTemplate";
+import ModalEdit from "../modal/modalEdit";
 
 export default function Main(){
     const dataContext = useDataContext();
@@ -25,6 +26,7 @@ export default function Main(){
             </ShareFeedComponnet>
             <PostTemplate/>
             <ModalPost/>
+            <ModalEdit/>
        </MainComponent>
     )
 }

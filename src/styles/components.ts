@@ -257,10 +257,8 @@ export const DivContainer = styled.div`
     align-items: center;
 `
 export const PostImage = styled.img`
-    max-height: 300px;
-    max-width: 474px;
-    height: auto;
-    width: auto;
+    height: 300px;
+    width: 470px;
     align-self: center;
     text-align: center;
     @media (max-width: 600px) {
