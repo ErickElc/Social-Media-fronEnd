@@ -1,5 +1,5 @@
+import { useModalContextEditar } from '../../../context/modalEditar';
 import { FormComponent, StyleForm } from '../../../styles/components';
-import { useModalContext } from '../../../context/modal.context';
 import { getUserLocalStorage } from '../../../auth/util';
 import { IData } from '../../../interface/Interface';
 import { useAuth } from '../../../auth/useAuth';
@@ -9,12 +9,12 @@ import Modal from '@mui/material/Modal';
 import http from '../../../api/api';
 import {useEffect, useState} from 'react'
 import './style.scss';
-import { useTheme } from 'styled-components';
-export default function ModalPost(){
-    const modalContext = useModalContext();
+export default () => {
     const [inputs, setInputs] = useState({
         content: ''
     });
+    const modalContext2 = useModalContextEditar();
+    console.log(modalContext2.id)
     const [userData, setUserData] = useState<IData | undefined>();
     const [files, setFiles] = useState<File | null>(null)
     const {token} = useAuth();
@@ -35,7 +35,7 @@ export default function ModalPost(){
     async function SubmitForm(e: any){
         e.preventDefault();
         if(userData?.habilitado === false){
-            return alert("Você não pode fazer um post, Habilite sua conta novamente!")
+            return alert("Você não editar seus posts, Habilite sua conta novamente!")
         }
         const formData = new FormData;
         formData.append('content', inputs.content);
@@ -51,25 +51,25 @@ export default function ModalPost(){
         }
         http.request({
             
-            url:'api/posts/new',
-            method: 'POST',
+            url:'api/posts/edit/' + modalContext2.id,
+            method: 'Put',
             headers: {
                 'Content-Type': 'multipart/form-data'
             },
             data: formData
         }).then((res) => {
-            alert('Post criado com sucesso!');
+            alert('Post editado com sucesso!');
             window.location.reload();
         })
         .catch(err =>  console.log(err));
     }
     function ToggleMode(){
-        modalContext.openModal();
+        modalContext2.openModal();
     }
 
     return(
         <Modal
-            open={(modalContext.modalState.open === true) ? true : false}
+            open={(modalContext2.modalState.open === true) ? true : false}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             >  

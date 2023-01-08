@@ -6,7 +6,6 @@
     padding: 0px;
 }
 body{
-    overflow-y: auto;
     overflow-x: hidden;
 }
 #Avatar{

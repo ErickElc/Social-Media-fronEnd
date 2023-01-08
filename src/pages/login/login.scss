@@ -2,9 +2,9 @@ $widthInputs: 300px;
 $minWidthInputs: 220px;
 
 body{
-    overflow-y: hidden;
+    // overflow-y: hidden;
     .div-bg{
-        background-color: #5800FF;
+        background-image: linear-gradient(to top, #66058d, #db811a);
     }
     form{
         display: flex;

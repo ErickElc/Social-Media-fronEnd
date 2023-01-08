@@ -7,7 +7,16 @@ export interface IDataContext{
 export interface IModalState {
     open?: boolean
 }
+export interface IModalState2 {
+    open?: boolean;
+    id: string;
+    setId: React.Dispatch<SetStateAction<string>>;
+}
 export interface IContextModal extends IModalState{
+    openModal: () => void;
+    modalState: IModalState;
+}
+export interface IContextModal2 extends IModalState2{
     openModal: () => void;
     modalState: IModalState;
 }
