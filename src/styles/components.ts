@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 export const DivBody = styled.div`
     display:flex;
     height: 100vh;
@@ -12,43 +11,7 @@ export const DivBody = styled.div`
     justify-content: center;
     overflow-x: hidden;
     align-items: center;
-
-`
-
-export const PubliContainer = styled.div`
-    display: flex;
-    flex-flow: column-reverse;
-    justify-content: center;
-    align-items: center;
-`
-
-export const PostSchema = styled.div`
-    background-color: whitesmoke;
-    -moz-box-shadow: 0px 1px 5px 0px #676767;
-    -webkit-box-shadow: 0px 1px 5px 0px #676767;
-    box-shadow: 0px 2px 6px 1px #676767;
-    padding: 50px;
-    display: flex;
-    flex-flow: wrap column;
-    justify-content: space-between;
-    word-break: break-all;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    width: 580px;
-    max-width: 580px;
-    min-height: 40vh;
-    @media (max-width: 600px) {
-        width: 340px;
-        box-shadow: 0px 0px 0px 0px #676767;
-        -moz-box-shadow: 0px 0px 0px 0px #676767;
-        -webkit-box-shadow: 0px 0px 0px 0px #676767;
-        padding: 0px;
-    }
-    @media (max-width: 380px){
-        width: 270px;
-    }
-`
-
+`;
 export const HeaderComponent = styled.header`
     top:0px;
     color: white;
@@ -60,14 +23,14 @@ export const HeaderComponent = styled.header`
     @media (max-width:600px){
         flex-flow: column wrap;
     }
-`
+`;
 export const FormComponent = styled.form`
 
     display: flex;
     flex-flow: column;
     padding: 40px;
 
-`
+`;
 export const StyleForm = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -94,21 +57,21 @@ export const DivBord = styled.form`
     padding: 30px;
     
 
-`
+`;
 export const TextLogin = styled.p`
     margin-bottom: 15px;
     text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
 
-`
+`;
 export const TextoLink = styled.p`
     color: #0096FF;
     text-decoration: underline;
     text-align: start;
     margin-top: 10px;
 
-`
+`;
 export const ModalHeader = styled.div`
     color: white;
     display:flex;
@@ -144,58 +107,13 @@ export const HeaderPerfil = styled.div`
         user-select:none;
     }
 `
-export const sectionHeader = styled.section`
-    box-shadow: 0px 1px 5px 0px #676767;
-    display:flex;
-    flex-flow: column;
-`
-export const SectionContainer = styled.main`
-    display:flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-`
 
-export const PerfilComponent = styled.div`
-    box-shadow: 0px 1px 5px 0px #676767;
-    display:flex;
-    flex-flow: column wrap;
-    padding: 40px;
-    border-radius: 10px;
-    margin-top: 30px;
 
-`
-export const DivContainer = styled.div`
-    display:flex;
-    flex-flow: column wrap;
-    align-items: center;
-`
-export const PostImage = styled.img`
-    height: 300px;
-    width: 470px;
-    align-self: center;
-    text-align: center;
-    @media (max-width: 600px) {
-        max-width: 340px;
-    }
-    @media (max-width: 400px) {
-        max-width: 270px;
-    }
-`
-export const AvatarPostImage = styled.img`
-    width: 50px;
-    height: 50px;
-    max-width: 50px;
-    max-height: 50px;
-    border-radius: 50%;
-`
-export const AvatarImage = styled.img`
-    width: 80px;
-    height: 80px;
-    max-height: 80px;
-    max-width: 80px;
-    border-radius: 50%;
-`
+
+
+
+
+
 export const TextColor = styled.h2`
     background-image: linear-gradient(90deg, rgba(141,5,240,1) 0%, rgba(79,0,176,1) 35%, rgba(103,0,119,1) 100%);
     font-weight: bold;
@@ -203,11 +121,4 @@ export const TextColor = styled.h2`
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-`
-export const ContainerDivAutor = styled.div`
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: flex-start;
-    margin-bottom: 20px;
 `
