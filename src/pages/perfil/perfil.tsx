@@ -1,14 +1,21 @@
-import { AvatarImage, AvatarPostImage, ContainerDivAutor, DivContainer, FeedComponent, PostImage, PostSchema, PubliContainer, SectionContainer } from '../../styles/components';
+import { useEffect, useState } from 'react';
+
+//Config
 import { PrivateRoute } from '../../components/protectedLayout/protectedLayout';
 import { useModalContextEditar } from '../../context/modalEditar';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import ModalEditar from '../../components/modal/modalEditar';
 import { IPerfil, IPost} from '../../interface/Interface';
 import { getUserLocalStorage } from '../../auth/util';
-import { Avatar, Button } from '@mui/material';
-import { useEffect, useState } from 'react';
 import http from '../../api/api';
 import '../../styles/index.css'
+import * as S from './styles';
+
+// Libs
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Avatar, Button } from '@mui/material';
+
+//Componets
+import ModalEditar from '../../components/modal/modalEditar';
+
 export default function Perfil(){
     const modalContext2 = useModalContextEditar();
     const {id} = useParams();
@@ -56,46 +63,46 @@ export default function Perfil(){
     }
     return(
         <PrivateRoute>
-            <SectionContainer> 
+            <S.SectionContainer> 
                 <div>
-                    <FeedComponent>
-                        {(data?.avatar) ? <AvatarImage src={data?.avatar} alt="/broken-image.jpg" className=""/>
+                    <S.FeedComponent>
+                        {(data?.avatar) ? <S.AvatarImage src={data?.avatar} alt="/broken-image.jpg" className=""/>
                         : <Avatar src="/broken-image.jpg" className="mr-3" style={{height: '70px', width: '70px'}}/>
                         }
                         <p className='mb-3 text-white'>{data?.name}</p>
                         {
                             user?._id === data?._id ? <Link to={route}><Button variant="contained">Editar Perfil</Button></Link> : ''
                         }
-                    </FeedComponent>
+                    </S.FeedComponent>
                 </div>
                 <div>
                     <h2 className='font-bold text-center mb-4'>Ultimos posts: </h2>
-                    <PubliContainer>
+                    <S.PubliContainer>
                         {postsPerfil.map((item: IPost) => (
-                            <PostSchema key={item?._id}>
+                            <S.PostSchema key={item?._id}>
                                 {(item?.autor?._id === user._id) ? 
                                 <Button  style={{width: 100, margin: 10}}variant='contained' onClick={() => deletePost(item?._id)} > Deletar</Button> : ''}
                                 {(item?.autor?._id === user._id) ? 
                                 <Button variant='outlined' style={{width: 100, margin: 10}} onClick={() => toogleMode(item._id)} > Editar </Button> : ''}
-                                <ContainerDivAutor>
+                                <S.ContainerDivAutor>
                                     {(item?.autor?.avatar) 
-                                    ? <AvatarPostImage src={item?.autor?.avatar} alt="/broken-image.jpg" className=""/>
+                                    ? <S.AvatarPostImage src={item?.autor?.avatar} alt="/broken-image.jpg" className=""/>
                                     : <Avatar src="/broken-image.jpg" className="" style={{height: '40px', width: '40px'}}/>
                                     }
                                     <p className="flex-row  items-center ml-3">{item?.autor.name}</p>
-                                </ContainerDivAutor>
+                                </S.ContainerDivAutor>
                                 <div className="mb-3">
                                     <p>{item?.content}</p>
                                 </div>
                                 <div>
-                                    {(item?.image_url) ? <PostImage src={item?.image_url} alt={item?.content} className="self-center"/> : ''}
+                                    {(item?.image_url) ? <S.PostImage src={item?.image_url} alt={item?.content} className="self-center"/> : ''}
                                 </div>
-                            </PostSchema>   
+                            </S.PostSchema>   
                         ))}
-                    </PubliContainer>
+                    </S.PubliContainer>
                 </div>
                 <ModalEditar/>
-            </SectionContainer>
+            </S.SectionContainer>
         </PrivateRoute>
 
     )
