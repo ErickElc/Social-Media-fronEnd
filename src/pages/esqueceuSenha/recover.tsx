@@ -1,9 +1,17 @@
-import { Button, TextField } from "@mui/material";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+
+//Config
 import http from "../../api/api";
-import { DivBody, DivBord, TextLogin, TextoLink } from "../../styles/components";
+import * as S from "./styles";
+
+// Libs
+import { useNavigate } from "react-router-dom";
+import { Button, TextField } from "@mui/material";
+
+// Images
 import WorkMediaLogo from '../../styles/WorkMediaLogo.png';
+
+
 export default function RecoverPassWord(){
     const [inputs, setInputs] = useState({
         email: '',
@@ -27,13 +35,13 @@ export default function RecoverPassWord(){
 
     return(
         <div className="div-bg">
-            <DivBody className="DivBody">
-                <DivBord className="ContainerBord" onSubmit={SubmitForm}>
+            <S.DivBody className="DivBody">
+                <S.DivBord className="ContainerBord" onSubmit={SubmitForm}>
                     <img src={WorkMediaLogo}  alt="Work Media Logo" style={{width: 200, height: 120}}/>
                     <h2 className="text-2xl font-bold">Recuperar Senha</h2>
-                    <TextLogin className="requestTest">
+                    <S.TextLogin className="requestTest">
                         {request}
-                    </TextLogin>
+                    </S.TextLogin>
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
@@ -66,8 +74,8 @@ export default function RecoverPassWord(){
                         onChange={(e) => setInputs(prev => ({...prev, password: e.target.value}))}
                     />
                     <Button variant="contained" className="buttonLogin" type="submit">Recuperar</Button>
-                </DivBord>
-            </DivBody>
+                </S.DivBord>
+            </S.DivBody>
         </div>
     )
 }
