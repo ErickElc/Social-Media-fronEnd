@@ -1,9 +1,15 @@
-import { DivBody, DivBord, TextLogin, TextoLink} from "../../styles/components";
 import React, { useState } from "react";
+
+//Config
+import http from "../../api/api";
+import * as S from "./styles";
+
+//Libs
 import { Link, useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import http from "../../api/api";
+
+// Images
 import WorkMediaLogo from '../../styles/WorkMediaLogo.png';
 
 
@@ -54,13 +60,13 @@ export default function Cadastro(){
 
     return(
         <div className="div-bg overflow-y-scroll">
-            <DivBody className="DivBody">
-                <DivBord className="ContainerBord" onSubmit={SubmitForm}>
+            <S.DivBody className="DivBody">
+                <S.DivBord className="ContainerBord" onSubmit={SubmitForm}>
                     <img src={WorkMediaLogo}  alt="Work Media Logo" style={{width: 200, height: 120}}/>
                     <h2 className="text-2xl font-bold">Cadastro</h2>
-                    <TextLogin className="requestTest">
+                    <S.TextLogin className="requestTest">
                         {request}
-                    </TextLogin>
+                    </S.TextLogin>
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
@@ -113,13 +119,13 @@ export default function Cadastro(){
                         onChange={(e) => setInputs(prev => ({...prev, password: e.target.value}))}
                     />
                     <Button variant="contained" className="buttonLogin" type="submit">Cadastrar</Button>
-                    <TextoLink className="textLink">
+                    <S.TextoLink className="textLink">
                         <Link to='/login'>
                             Já tem conta?
                         </Link>    
-                    </TextoLink>
-                </DivBord>
-            </DivBody>
+                    </S.TextoLink>
+                </S.DivBord>
+            </S.DivBody>
         </div>
     )
 }
