@@ -1,11 +1,19 @@
-import { DivBody, DivBord, TextLogin, TextoLink} from "../../styles/components";
-import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+
+
+//Config
+import { useAuth } from "../../auth/useAuth";
+import * as S from "./styles";
+import './login.scss';
+
+// Libs
+import { Link, useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { useAuth } from "../../auth/useAuth";
-import './login.scss';
+
+// Images
 import WorkMediaLogo from '../../styles/WorkMediaLogo.png';
+
 export default function Login(){
     const navigate = useNavigate();
     const auth = useAuth();
@@ -32,12 +40,12 @@ export default function Login(){
 
     return( 
         <div className="div-bg">
-            <DivBody className="DivBody">
-                <DivBord className="ContainerBord" onSubmit={SubmitForm}>
+            <S.DivBody className="DivBody">
+                <S.DivBord className="ContainerBord" onSubmit={SubmitForm}>
                     <img src={WorkMediaLogo}  alt="Work Media Logo" style={{width: 200, height: 120}}/>
-                    <TextLogin className="requestTest">
+                    <S.TextLogin className="requestTest">
                         {request}
-                    </TextLogin>
+                    </S.TextLogin>
                     <TextField 
                         className="Inputs"
                         id="outlined-basic"
@@ -59,18 +67,18 @@ export default function Login(){
                         onChange={(e) => setInputs(prev => ({...prev, password: e.target.value}))}
                     />
                     <Button variant="contained" className="buttonLogin" type="submit">Login</Button>
-                    <TextoLink className="textLink">
+                    <S.TextoLink className="textLink">
                         <Link to='/recover'>
                             Esqueceu a senha?
                         </Link>  
-                    </TextoLink>
-                    <TextoLink className="textLink">
+                    </S.TextoLink>
+                    <S.TextoLink className="textLink">
                         <Link to='/cadastrar'>
                             Não tem cadastro?
                         </Link>  
-                    </TextoLink>
-                </DivBord>
-            </DivBody>
+                    </S.TextoLink>
+                </S.DivBord>
+            </S.DivBody>
         </div>
     );
 
