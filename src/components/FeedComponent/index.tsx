@@ -1,5 +1,7 @@
 import { IDataContext2 } from "../../interface/Interface";
+
 import Avatar from "@mui/material/Avatar";
+
 import * as S from "./styles";
 
 export default ({ dataContext }: IDataContext2) => {
