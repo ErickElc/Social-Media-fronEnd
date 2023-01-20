@@ -9,6 +9,7 @@ export interface IDataContext2 {
         userData?: IData | IPerfil | undefined;
         setUserData?: React.Dispatch<SetStateAction<IData | undefined>>;
     };
+    ToggleMode?: () => void;
 }
 export interface IModalState {
     open?: boolean;
@@ -70,4 +71,11 @@ export interface IData {
 }
 export interface IPerfis {
     users: Array<IData>;
+}
+export interface RegisterType {
+    name: String;
+    age: Number;
+    email: String;
+    cpf: String;
+    password: String;
 }
