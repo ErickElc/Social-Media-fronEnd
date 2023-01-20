@@ -1,22 +1,20 @@
-import { createContext } from "react";
-import { IAuthProvider } from "../auth/interfaces";
-import { useState, useContext} from 'react'
+import { useState, useContext, createContext } from "react";
+
+// Configs
 import { IContextModal, IModalState } from "../interface/Interface";
+import { IAuthProvider } from "../auth/interfaces";
 
-export const ModalContext =  createContext<IContextModal>({} as IContextModal);
+export const ModalContext = createContext<IContextModal>({} as IContextModal);
 
+export const ModalProvider = ({ children }: IAuthProvider) => {
+    const [modalState, setModalState] = useState<IModalState>({ open: false });
 
-export const ModalProvider = ({children} : IAuthProvider) =>{
+    const openModal = () => setModalState({ open: !modalState.open });
 
-    const [modalState, setModalState] = useState<IModalState>({open: false});
+    return <ModalContext.Provider value={{ modalState, openModal }}>{children}</ModalContext.Provider>;
+};
 
-    const openModal = () => setModalState({open: !modalState.open});
-
-    return<ModalContext.Provider value={{modalState, openModal}}>{children}</ModalContext.Provider>;
-}
-
-export const useModalContext2 = () =>{
+export const useModalContext2 = () => {
     const context = useContext(ModalContext);
     return context;
-
-}
+};
