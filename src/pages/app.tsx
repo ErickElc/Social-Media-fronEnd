@@ -1,19 +1,25 @@
 import { Routes, Route } from "react-router-dom";
-import { AuthProvider } from "../auth/Auth";
-import Header from "../components/header";
-import PaginaPadrao from "../components/paginaPadrao/paginaPadrao";
-import { DataProvider } from "../context/dataContext";
-import { ModalProvider } from "../context/modal.context";
-import { ModalProviderEditar } from "../context/modalEditar";
+
+//Config
 import { ModalHeaderProvider } from "../context/modalHeader.context";
-import Cadastro from "./cadastro/cadastro";
-import ConfigPage from "./configs/config";
-import RecoverPassWord from "./esqueceuSenha/recover";
-import Home from "./home/home";
-import Login from "./login/login";
-import Perfil from "./perfil/perfil";
-import Pesquisa from "./pesquisa/pesquisa";
-export default function App() {
+import { ModalProviderEditar } from "../context/modalEditar";
+import { ModalProvider } from "../context/modal.context";
+import { DataProvider } from "../context/dataContext";
+import { AuthProvider } from "../auth/Auth";
+
+// Components
+import PaginaPadrao from "../components/PaginaPadrao";
+
+// Pages
+import RecoverPassWord from "./EsqueceuSenha";
+import ConfigPage from "./ConfigPage";
+import Pesquisa from "./Pesquisar";
+import Cadastro from "./Cadastro";
+import Perfil from "./Perfil";
+import Login from "./Login";
+import Home from "./Home";
+
+export default () => {
     return (
         <ModalHeaderProvider>
             <ModalProvider>
@@ -38,4 +44,4 @@ export default function App() {
             </ModalProvider>
         </ModalHeaderProvider>
     );
-}
+};
