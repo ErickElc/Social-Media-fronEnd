@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 //Config
+import { useModalContextEditar } from "../../context/modalEditar";
 import { useModalContext } from "../../context/modal.context";
 import { useDataContext } from "../../context/dataContext";
+import { getUserLocalStorage } from "../../auth/util";
+import { IPost } from "../../interface/Interface";
 import * as S from "./styles";
 
 //Components
-import ModalPost from "../modal/modalPosts";
-import PostTemplate from "../postTemplate";
-import ModalEdit from "../modal/modalEdit";
+import ShareFeedComponent from "../ShareFeedComponent";
+import ModalPost from "../Modais/ModalPosts";
+import PostTemplate from "../PostTemplate";
+import ModalEdit from "../Modais/ModalEdit";
 
 // Libs
 import FeedComponent from "../FeedComponent";
-import Avatar from "@mui/material/Avatar";
-import { useModalContextEditar } from "../../context/modalEditar";
-import { getUserLocalStorage } from "../../auth/util";
-import { IPost } from "../../interface/Interface";
 import http from "../../api/api";
 
-export default function Main() {
+export default () => {
     const [postData, setPostData] = useState<Array<IPost> | []>([]);
     const modalContext2 = useModalContextEditar();
     const { openModal } = useModalContext();
@@ -32,9 +32,13 @@ export default function Main() {
             })
             .catch((err) => console.log(err));
     }, []);
-
-    const ToggleMode = () => {
+    const toggleMode = () => {
         openModal();
+    };
+
+    const toggleMode2 = (id: string) => {
+        modalContext2?.setId(id);
+        modalContext2.openModal();
     };
 
     const deletePost = async (id: String) => {
@@ -44,7 +48,7 @@ export default function Main() {
                 email: User?.email
             });
             if (response.status) {
-                alert("Post Excluido com sucesso");
+                alert("Post Excluído com sucesso");
                 window.location.reload();
             }
         } catch (error) {
@@ -52,22 +56,13 @@ export default function Main() {
         }
     };
 
-    const toggleMode = (id: string) => {
-        modalContext2?.setId(id);
-        modalContext2.openModal();
-    };
     return (
         <S.MainComponent>
             <FeedComponent dataContext={dataContext} />
-            <S.ShareFeedComponent className="mb-4">
-                <Avatar src={dataContext.userData?.avatar} alt="/broken-image.jpg" className="mr-3" />
-                <S.InputComponent onClick={ToggleMode}>
-                    <p>Faça uma postagem</p>
-                </S.InputComponent>
-            </S.ShareFeedComponent>
-            <PostTemplate deletePost={deletePost} toggleMode={toggleMode} postData={postData} />
+            <ShareFeedComponent dataContext={dataContext} ToggleMode={toggleMode} />
+            <PostTemplate deletePost={deletePost} toggleMode={toggleMode2} postData={postData} />
             <ModalPost />
             <ModalEdit />
         </S.MainComponent>
     );
-}
+};
