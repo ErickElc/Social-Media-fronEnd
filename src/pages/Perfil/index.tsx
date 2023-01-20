@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 //Config
-import { PrivateRoute } from "../../components/protectedLayout/protectedLayout";
+import { PrivateRoute } from "../../components/ProtectedLayout";
 import { useModalContextEditar } from "../../context/modalEditar";
 import { IData, IPost } from "../../interface/Interface";
 import { getUserLocalStorage } from "../../auth/util";
@@ -13,17 +13,37 @@ import * as S from "./styles";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 //Componets
-import ModalEditar from "../../components/modal/modalEditar";
+import ModalEditar from "../../components/Modais/ModalEditar";
 import FeedComponent from "../../components/FeedComponent";
-import PostTemplate from "../../components/postTemplate";
+import PostTemplate from "../../components/PostTemplate";
 
-export default function Perfil() {
+export default () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const user = getUserLocalStorage();
     const [data, setData] = useState<IData>();
     const [postData, setPostsData] = useState([]);
     const modalContext2 = useModalContextEditar();
+
+    const deletePost = async (id: String | undefined) => {
+        try {
+            const response = await http.post(`api/posts/delete/${id}`, {
+                token: user?.token,
+                email: user?.email
+            });
+            if (response.status) {
+                alert("Post Excluído com sucesso");
+                window.location.reload();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const toggleMode = (id: string) => {
+        modalContext2?.setId(id);
+        modalContext2.openModal();
+    };
 
     useEffect(() => {
         http.get(`api/users/${id}`)
@@ -49,36 +69,16 @@ export default function Perfil() {
             });
     }, []);
 
-    const deletePost = async (id: String | undefined) => {
-        try {
-            const response = await http.post(`api/posts/delete/${id}`, {
-                token: user?.token,
-                email: user?.email
-            });
-            if (response.status) {
-                alert("Post Excluído com sucesso");
-                window.location.reload();
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const toogleMode = (id: string) => {
-        modalContext2?.setId(id);
-        modalContext2.openModal();
-    };
-
     return (
         <PrivateRoute>
             <S.SectionContainer>
                 <FeedComponent dataContext={{ userData: data, setUserData: setData }} />
                 <div>
-                    <h2 className="font-bold text-center mb-4">Ultimos posts: </h2>
-                    <PostTemplate deletePost={deletePost} toggleMode={toogleMode} postData={postData} />
+                    <h2 className="font-bold text-center mb-4">Últimos posts: </h2>
+                    <PostTemplate deletePost={deletePost} toggleMode={toggleMode} postData={postData} />
                 </div>
                 <ModalEditar />
             </S.SectionContainer>
         </PrivateRoute>
     );
-}
+};
