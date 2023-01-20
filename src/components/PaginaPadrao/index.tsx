@@ -1,4 +1,4 @@
-import { PrivateRoute } from "../ProtectedLayout/protectedLayout";
+import { PrivateRoute } from "../ProtectedLayout";
 import { Outlet } from "react-router-dom";
 
 // Components
