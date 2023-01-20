@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useModalHeaderContext } from "../../context/modalHeader.context";
 import { useDataContext } from "../../context/dataContext";
 import * as S from "../../styles/components";
-import * as types from "./interfaces";
+import * as interfaces from "./types";
 import http from "../../api/api";
 import "./styles.scss";
 
@@ -19,7 +19,7 @@ export default () => {
     const DataContext = useDataContext();
     const navigate = useNavigate();
 
-    const [users, setUsers] = useState<types.UsersData[]>([]);
+    const [users, setUsers] = useState<interfaces.UsersData[]>([]);
     const [input, setInputs] = useState("");
 
     const ToggleMode = () => {
@@ -32,7 +32,7 @@ export default () => {
     };
 
     const perfis = () => {
-        let label: Array<types.ILabel | []> = [];
+        let label: Array<interfaces.ILabel | []> = [];
         for (let i in users) {
             label.push({ label: users[i]?.name, id: users[i]?._id });
         }
