@@ -1,0 +1,69 @@
+$widthInputs: 300px;
+$minWidthInputs: 220px;
+
+body{
+    // overflow-y: hidden;
+    .div-bg{
+        background-image: linear-gradient(to top, #66058d, #db811a);
+    }
+    form{
+        display: flex;
+        flex-flow:  column;
+        .buttonLogin{
+            width: $widthInputs;
+        }
+    }
+    .requestTest{
+        color: red;
+        font-size: 15px;
+        
+    }
+
+}
+
+.DivBody{
+    .ContainerBord{
+        .Inputs{
+            margin: 20px;
+            width: $widthInputs;
+        }
+        .buttonLogin{
+            justify-content: center;
+            width: $widthInputs;
+        }
+    }
+}
+@media (max-width: 400px) {
+    
+    .DivBody{
+        height: 70vh;
+        .ContainerBord{
+            .Title{
+                font-size: 2rem;
+            }
+            .Inputs{
+                width: $minWidthInputs;
+            }
+            .buttonLogin{
+                justify-content: center;
+                width: $minWidthInputs;
+            }
+        }
+    }
+    
+}
+@media (max-width: 310px) {
+    .DivBody{
+        .ContainerBord{
+            padding: 5px;
+            .Title{
+                font-size: 2rem;
+            }
+            .Inputs{
+                margin: 10px;
+            }
+        }
+    }
+
+
+}
