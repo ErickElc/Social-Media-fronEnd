@@ -1,7 +1,9 @@
-import { createContext } from "react";
+import { useState, useContext, createContext } from "react";
+
+// Configs
+import { IContextModal2, IModalState } from "../interface/Interface";
 import { IAuthProvider } from "../auth/interfaces";
-import { useState, useContext } from "react";
-import { IContextModal2, IModalState, IModalState2 } from "../interface/Interface";
+
 export const ModalContextEditar = createContext<IContextModal2>({} as IContextModal2);
 
 export const ModalProviderEditar = ({ children }: IAuthProvider) => {
