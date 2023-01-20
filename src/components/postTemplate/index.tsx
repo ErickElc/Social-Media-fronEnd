@@ -1,38 +1,20 @@
-import { useEffect, useState } from "react";
-
 // Config
-import { useModalContextEditar } from "../../context/modalEditar";
 import { getUserLocalStorage } from "../../auth/util";
 import { IPost } from "../../interface/Interface";
-import http from "../../api/api";
+import * as types from "./interfaces";
 import * as S from "./styles";
 
 //libs
 import { Avatar, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function PostTemplate({
-    postData,
-    deletePost,
-    toggleMode: toggleMode
-}: {
-    postData: IPost[];
-    deletePost: (id: String) => Promise<void>;
-    toggleMode: (id: string) => void;
-}) {
-    const modalContext2 = useModalContextEditar();
+export default ({ postData, deletePost, toggleMode: toggleMode }: types.IPostTemplate) => {
     const User = getUserLocalStorage();
-    const [id, setId] = useState<number>(0);
 
     return (
         <S.PubliContainer>
             {postData?.map((item: IPost, index: number) => (
-                <S.PostSchema
-                    key={item?._id}
-                    onChange={() => {
-                        setId(index);
-                    }}
-                >
+                <S.PostSchema key={item?._id}>
                     <S.PostTop className="flex-row justify-between content-end mb-1">
                         <div className="flex-row items-end content-end justify-end my-3">
                             {item?.autor?._id === User._id ? (
@@ -75,4 +57,4 @@ export default function PostTemplate({
             ))}
         </S.PubliContainer>
     );
-}
+};
