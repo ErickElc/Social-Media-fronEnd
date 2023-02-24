@@ -7,7 +7,7 @@ const apis = [
 ];
 
 const http = axios.create({
-    baseURL: apis[2]
+    baseURL: apis[0]
 });
 
 export default http;
