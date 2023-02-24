@@ -91,7 +91,7 @@ export default () => {
             aria-describedby="modal-modal-description"
         >
             <Box sx={S.StyleForm}>
-                <div>
+                <div className="mb-4">
                     <button onClick={ToggleMode} className="Button-back">
                         X
                     </button>
@@ -107,7 +107,7 @@ export default () => {
                         inputProps={{ maxLength: 60 }}
                         onChange={(e) => setInputs((prev) => ({ ...prev, content: e.target.value }))}
                     />
-                    <input type="file" className="self-center m-4" onChange={VerifyImages} />
+                    <S.InputFile type="file" className="self-center m-4" onChange={VerifyImages} />
                     <Button variant="contained" className="ButtonLogin" type="submit">
                         Enviar Post
                     </Button>
